@@ -29,6 +29,10 @@ class ComposerStaticInit8ae2d18c692f1eaf54b5b40573d8c1e3
         array (
             'phpDocumentor\\Reflection\\' => 25,
         ),
+        'm' => 
+        array (
+            'miloschuman\\highcharts\\' => 23,
+        ),
         'c' => 
         array (
             'cebe\\markdown\\' => 14,
@@ -109,6 +113,10 @@ class ComposerStaticInit8ae2d18c692f1eaf54b5b40573d8c1e3
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
             1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
             2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+        ),
+        'miloschuman\\highcharts\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/miloschuman/yii2-highcharts-widget/src',
         ),
         'cebe\\markdown\\' => 
         array (

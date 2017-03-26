@@ -188,3 +188,4 @@ $RECYCLE.BIN/
 
 #Mr Developer
 .mr.developer.cfg
+config/db.php

@@ -20,6 +20,9 @@ use Yii;
  * @property string $account_thirdparty
  * @property integer $Batched
  * @property integer $Updated
+ *
+ * @property ItTaccotype $accoType
+ * @property ItTitem[] $itTitems
  */
 class ItTaccount extends \yii\db\ActiveRecord
 {
@@ -37,11 +40,13 @@ class ItTaccount extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['Acco_Type_ID'], 'required'],
             [['Acco_Type_ID', 'Acco_Acty_ID', 'Acco_Stat', 'Batched', 'Updated'], 'integer'],
             [['Acco_Bala'], 'number'],
             [['Acco_Date'], 'safe'],
             [['Acco_Note'], 'string'],
             [['Acco_Name', 'Acco_Desc', 'Acco_Nro', 'account_thirdparty'], 'string', 'max' => 50],
+            [['Acco_Type_ID'], 'exist', 'skipOnError' => true, 'targetClass' => ItTaccotype::className(), 'targetAttribute' => ['Acco_Type_ID' => 'AcTy_ID']],
         ];
     }
 
@@ -65,6 +70,22 @@ class ItTaccount extends \yii\db\ActiveRecord
             'Batched' => Yii::t('app', 'Batched'),
             'Updated' => Yii::t('app', 'Updated'),
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAccoType()
+    {
+        return $this->hasOne(ItTaccotype::className(), ['AcTy_ID' => 'Acco_Type_ID']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getItTitems()
+    {
+        return $this->hasMany(ItTitem::className(), ['ITEM_Account_ID' => 'Acco_ID']);
     }
 
     /**

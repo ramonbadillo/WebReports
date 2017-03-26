@@ -12,6 +12,9 @@ use Yii;
  * @property string $AcTy_Name
  * @property integer $Batched
  * @property integer $Updated
+ *
+ * @property ItTaccotypegeneral $accoGEN
+ * @property ItTaccount[] $itTaccounts
  */
 class ItTaccotype extends \yii\db\ActiveRecord
 {
@@ -29,8 +32,10 @@ class ItTaccotype extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['Acco_GEN_ID'], 'required'],
             [['Acco_GEN_ID', 'Batched', 'Updated'], 'integer'],
             [['AcTy_Name'], 'string'],
+            [['Acco_GEN_ID'], 'exist', 'skipOnError' => true, 'targetClass' => ItTaccotypegeneral::className(), 'targetAttribute' => ['Acco_GEN_ID' => 'Gen_account']],
         ];
     }
 
@@ -46,6 +51,22 @@ class ItTaccotype extends \yii\db\ActiveRecord
             'Batched' => Yii::t('app', 'Batched'),
             'Updated' => Yii::t('app', 'Updated'),
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAccoGEN()
+    {
+        return $this->hasOne(ItTaccotypegeneral::className(), ['Gen_account' => 'Acco_GEN_ID']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getItTaccounts()
+    {
+        return $this->hasMany(ItTaccount::className(), ['Acco_Type_ID' => 'AcTy_ID']);
     }
 
     /**

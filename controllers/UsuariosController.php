@@ -3,16 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\ItTitem;
-use app\models\ItTitemSearch;
+use app\models\Usuarios;
+use app\models\UsuariosSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * ItTitemController implements the CRUD actions for ItTitem model.
+ * UsuariosController implements the CRUD actions for Usuarios model.
  */
-class ItTitemController extends Controller
+class UsuariosController extends Controller
 {
     /**
      * @inheritdoc
@@ -30,12 +30,12 @@ class ItTitemController extends Controller
     }
 
     /**
-     * Lists all ItTitem models.
+     * Lists all Usuarios models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new ItTitemSearch();
+        $searchModel = new UsuariosSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,8 +45,8 @@ class ItTitemController extends Controller
     }
 
     /**
-     * Displays a single ItTitem model.
-     * @param integer $id
+     * Displays a single Usuarios model.
+     * @param string $id
      * @return mixed
      */
     public function actionView($id)
@@ -57,16 +57,16 @@ class ItTitemController extends Controller
     }
 
     /**
-     * Creates a new ItTitem model.
+     * Creates a new Usuarios model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new ItTitem();
+        $model = new Usuarios();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->ITEM_UID]);
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -75,9 +75,9 @@ class ItTitemController extends Controller
     }
 
     /**
-     * Updates an existing ItTitem model.
+     * Updates an existing Usuarios model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
+     * @param string $id
      * @return mixed
      */
     public function actionUpdate($id)
@@ -85,7 +85,7 @@ class ItTitemController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->ITEM_UID]);
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -94,9 +94,9 @@ class ItTitemController extends Controller
     }
 
     /**
-     * Deletes an existing ItTitem model.
+     * Deletes an existing Usuarios model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
+     * @param string $id
      * @return mixed
      */
     public function actionDelete($id)
@@ -107,15 +107,15 @@ class ItTitemController extends Controller
     }
 
     /**
-     * Finds the ItTitem model based on its primary key value.
+     * Finds the Usuarios model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return ItTitem the loaded model
+     * @param string $id
+     * @return Usuarios the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = ItTitem::findOne($id)) !== null) {
+        if (($model = Usuarios::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

@@ -55,6 +55,10 @@ use Yii;
  * @property double $Move_Deta_Ori_Q
  * @property integer $Batched
  * @property integer $Updated
+ *
+ * @property ItTitem $moveDetaMove
+ * @property ItTmove $moveDetaMove0
+ * @property ItTuser $orderHost
  */
 class ItTdetamove extends \yii\db\ActiveRecord
 {
@@ -80,6 +84,9 @@ class ItTdetamove extends \yii\db\ActiveRecord
             [['Move_deta_UM'], 'string', 'max' => 10],
             [['Chair_ID'], 'string', 'max' => 4],
             [['Discount_Code'], 'string', 'max' => 20],
+            [['Move_Deta_Move_ID'], 'exist', 'skipOnError' => true, 'targetClass' => ItTitem::className(), 'targetAttribute' => ['Move_Deta_Move_ID' => 'ITEM_UID']],
+            [['Move_Deta_Move_ID'], 'exist', 'skipOnError' => true, 'targetClass' => ItTmove::className(), 'targetAttribute' => ['Move_Deta_Move_ID' => 'Move_ID']],
+            [['order_host'], 'exist', 'skipOnError' => true, 'targetClass' => ItTuser::className(), 'targetAttribute' => ['order_host' => 'USER_ID']],
         ];
     }
 
@@ -138,6 +145,30 @@ class ItTdetamove extends \yii\db\ActiveRecord
             'Batched' => Yii::t('app', 'Batched'),
             'Updated' => Yii::t('app', 'Updated'),
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMoveDetaMove()
+    {
+        return $this->hasOne(ItTitem::className(), ['ITEM_UID' => 'Move_Deta_Move_ID']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMoveDetaMove0()
+    {
+        return $this->hasOne(ItTmove::className(), ['Move_ID' => 'Move_Deta_Move_ID']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getOrderHost()
+    {
+        return $this->hasOne(ItTuser::className(), ['USER_ID' => 'order_host']);
     }
 
     /**

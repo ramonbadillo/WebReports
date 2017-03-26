@@ -46,13 +46,14 @@ class ItTaccountController extends Controller
 
     /**
      * Displays a single ItTaccount model.
-     * @param integer $id
+     * @param integer $Acco_ID
+     * @param integer $Acco_Type_ID
      * @return mixed
      */
-    public function actionView($id)
+    public function actionView($Acco_ID, $Acco_Type_ID)
     {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $this->findModel($Acco_ID, $Acco_Type_ID),
         ]);
     }
 
@@ -66,7 +67,7 @@ class ItTaccountController extends Controller
         $model = new ItTaccount();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->Acco_ID]);
+            return $this->redirect(['view', 'Acco_ID' => $model->Acco_ID, 'Acco_Type_ID' => $model->Acco_Type_ID]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -77,15 +78,16 @@ class ItTaccountController extends Controller
     /**
      * Updates an existing ItTaccount model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
+     * @param integer $Acco_ID
+     * @param integer $Acco_Type_ID
      * @return mixed
      */
-    public function actionUpdate($id)
+    public function actionUpdate($Acco_ID, $Acco_Type_ID)
     {
-        $model = $this->findModel($id);
+        $model = $this->findModel($Acco_ID, $Acco_Type_ID);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->Acco_ID]);
+            return $this->redirect(['view', 'Acco_ID' => $model->Acco_ID, 'Acco_Type_ID' => $model->Acco_Type_ID]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -96,12 +98,13 @@ class ItTaccountController extends Controller
     /**
      * Deletes an existing ItTaccount model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
+     * @param integer $Acco_ID
+     * @param integer $Acco_Type_ID
      * @return mixed
      */
-    public function actionDelete($id)
+    public function actionDelete($Acco_ID, $Acco_Type_ID)
     {
-        $this->findModel($id)->delete();
+        $this->findModel($Acco_ID, $Acco_Type_ID)->delete();
 
         return $this->redirect(['index']);
     }
@@ -109,13 +112,14 @@ class ItTaccountController extends Controller
     /**
      * Finds the ItTaccount model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
+     * @param integer $Acco_ID
+     * @param integer $Acco_Type_ID
      * @return ItTaccount the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findModel($Acco_ID, $Acco_Type_ID)
     {
-        if (($model = ItTaccount::findOne($id)) !== null) {
+        if (($model = ItTaccount::findOne(['Acco_ID' => $Acco_ID, 'Acco_Type_ID' => $Acco_Type_ID])) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

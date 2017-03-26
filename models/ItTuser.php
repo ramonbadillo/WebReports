@@ -23,6 +23,8 @@ use Yii;
  * @property integer $grouping_id
  * @property integer $Batched
  * @property integer $Updated
+ *
+ * @property ItTdetamove[] $itTdetamoves
  */
 class ItTuser extends \yii\db\ActiveRecord
 {
@@ -69,6 +71,14 @@ class ItTuser extends \yii\db\ActiveRecord
             'Batched' => Yii::t('app', 'Batched'),
             'Updated' => Yii::t('app', 'Updated'),
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getItTdetamoves()
+    {
+        return $this->hasMany(ItTdetamove::className(), ['order_host' => 'USER_ID']);
     }
 
     /**

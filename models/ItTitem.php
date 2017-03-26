@@ -94,6 +94,10 @@ use Yii;
  * @property integer $show_pic
  * @property integer $Batched
  * @property integer $Updated
+ *
+ * @property ItTdetamove[] $itTdetamoves
+ * @property ItTaccount $iTEMAccount
+ * @property ItTcategory $iTEMCate
  */
 class ItTitem extends \yii\db\ActiveRecord
 {
@@ -122,6 +126,8 @@ class ItTitem extends \yii\db\ActiveRecord
             [['Modify_by'], 'string', 'max' => 5],
             [['Num_Bonus_Points'], 'string', 'max' => 20],
             [['ITEM_LOCAL_ID'], 'string', 'max' => 100],
+            [['ITEM_Account_ID'], 'exist', 'skipOnError' => true, 'targetClass' => ItTaccount::className(), 'targetAttribute' => ['ITEM_Account_ID' => 'Acco_ID']],
+            [['ITEM_Cate_ID'], 'exist', 'skipOnError' => true, 'targetClass' => ItTcategory::className(), 'targetAttribute' => ['ITEM_Cate_ID' => 'Cate_ID']],
         ];
     }
 
@@ -219,6 +225,30 @@ class ItTitem extends \yii\db\ActiveRecord
             'Batched' => Yii::t('app', 'Batched'),
             'Updated' => Yii::t('app', 'Updated'),
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getItTdetamoves()
+    {
+        return $this->hasMany(ItTdetamove::className(), ['Move_Deta_Move_ID' => 'ITEM_UID']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getITEMAccount()
+    {
+        return $this->hasOne(ItTaccount::className(), ['Acco_ID' => 'ITEM_Account_ID']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getITEMCate()
+    {
+        return $this->hasOne(ItTcategory::className(), ['Cate_ID' => 'ITEM_Cate_ID']);
     }
 
     /**

@@ -11,6 +11,8 @@ use Yii;
  * @property string $Gen_Name
  * @property integer $Batched
  * @property integer $Updated
+ *
+ * @property ItTaccotype[] $itTaccotypes
  */
 class ItTaccotypegeneral extends \yii\db\ActiveRecord
 {
@@ -44,6 +46,14 @@ class ItTaccotypegeneral extends \yii\db\ActiveRecord
             'Batched' => Yii::t('app', 'Batched'),
             'Updated' => Yii::t('app', 'Updated'),
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getItTaccotypes()
+    {
+        return $this->hasMany(ItTaccotype::className(), ['Acco_GEN_ID' => 'Gen_account']);
     }
 
     /**

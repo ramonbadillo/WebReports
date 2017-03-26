@@ -78,6 +78,8 @@ use Yii;
  * @property integer $e_approved
  * @property integer $Batched
  * @property integer $Updated
+ *
+ * @property ItTdetamove[] $itTdetamoves
  */
 class ItTmove extends \yii\db\ActiveRecord
 {
@@ -182,6 +184,14 @@ class ItTmove extends \yii\db\ActiveRecord
             'Batched' => Yii::t('app', 'Batched'),
             'Updated' => Yii::t('app', 'Updated'),
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getItTdetamoves()
+    {
+        return $this->hasMany(ItTdetamove::className(), ['Move_Deta_Move_ID' => 'Move_ID']);
     }
 
     /**

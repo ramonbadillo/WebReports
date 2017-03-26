@@ -13,7 +13,6 @@ config/db.php
 bin/
 tmp/
 *.tmp
-*.bak
 *.swp
 *~.nib
 local.properties

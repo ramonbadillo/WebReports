@@ -15,17 +15,17 @@ features to your application.
 DIRECTORY STRUCTURE
 -------------------
 
-      assets/             contains assets definition
-      commands/           contains console commands (controllers)
-      config/             contains application configurations
-      controllers/        contains Web controller classes
-      mail/               contains view files for e-mails
-      models/             contains model classes
-      runtime/            contains files generated during runtime
-      tests/              contains various tests for the basic application
-      vendor/             contains dependent 3rd-party packages
-      views/              contains view files for the Web application
-      web/                contains the entry script and Web resources
+assets/             contains assets definition
+commands/           contains console commands (controllers)
+config/             contains application configurations
+controllers/        contains Web controller classes
+mail/               contains view files for e-mails
+models/             contains model classes
+runtime/            contains files generated during runtime
+tests/              contains various tests for the basic application
+vendor/             contains dependent 3rd-party packages
+views/              contains view files for the Web application
+web/                contains the entry script and Web resources
 
 
 
@@ -117,11 +117,11 @@ Tests can be executed by running
 
 ```
 vendor/bin/codecept run
-``` 
+```
 
 The command above will execute unit and functional tests. Unit tests are testing the system components, while functional
 tests are for testing user interaction. Acceptance tests are disabled by default as they require additional setup since
-they perform testing in real browser. 
+they perform testing in real browser.
 
 
 ### Running  acceptance tests
@@ -131,47 +131,47 @@ To execute acceptance tests do the following:
 1. Rename `tests/acceptance.suite.yml.example` to `tests/acceptance.suite.yml` to enable suite configuration
 
 2. Replace `codeception/base` package in `composer.json` with `codeception/codeception` to install full featured
-   version of Codeception
+version of Codeception
 
-3. Update dependencies with Composer 
+3. Update dependencies with Composer
 
-    ```
-    composer update  
-    ```
+```
+composer update  
+```
 
 4. Download [Selenium Server](http://www.seleniumhq.org/download/) and launch it:
 
-    ```
-    java -jar ~/selenium-server-standalone-x.xx.x.jar
-    ``` 
+```
+java -jar ~/selenium-server-standalone-x.xx.x.jar
+```
 
 5. (Optional) Create `yii2_basic_tests` database and update it by applying migrations if you have them.
 
-   ```
-   tests/bin/yii migrate
-   ```
+```
+tests/bin/yii migrate
+```
 
-   The database configuration can be found at `config/test_db.php`.
+The database configuration can be found at `config/test_db.php`.
 
 
 6. Start web server:
 
-    ```
-    tests/bin/yii serve
-    ```
+```
+tests/bin/yii serve
+```
 
 7. Now you can run all available tests
 
-   ```
-   # run all available tests
-   vendor/bin/codecept run
+```
+# run all available tests
+vendor/bin/codecept run
 
-   # run acceptance tests
-   vendor/bin/codecept run acceptance
+# run acceptance tests
+vendor/bin/codecept run acceptance
 
-   # run only unit and functional tests
-   vendor/bin/codecept run unit,functional
-   ```
+# run only unit and functional tests
+vendor/bin/codecept run unit,functional
+```
 
 ### Code coverage support
 
@@ -190,3 +190,5 @@ vendor/bin/codecept run functional,unit -- --coverage-html --coverage-xml
 ```
 
 You can see code coverage output under the `tests/_output` directory.
+
+https://www.youtube.com/watch?v=06zAIa0yvjI

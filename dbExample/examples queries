@@ -1,0 +1,63 @@
+##my Query
+
+
+SELECT
+ITEM_Description,
+it_tcategory.Cate_Name,
+SUM(IT_TDetaMove.Move_Deta_Q)
+FROM
+it_tdetamove
+INNER JOIN
+it_tmove ON (it_tdetamove.Move_Deta_Move_ID = it_tmove.Move_ID)
+INNER JOIN
+it_titem ON (it_tdetamove.Move_Deta_ITEM_ID = it_titem.ITEM_ID)
+INNER JOIN
+it_tcategory ON (it_titem.ITEM_Cate_ID = it_tcategory.Cate_ID)
+WHERE
+it_tmove.Move_Date BETWEEN '2016-03-19 00:00:00' AND '2017-03-19 23:59:59'
+GROUP BY ITEM_Description
+
+
+##Brian Query
+
+SELECT
+it_titem.ITEM_ID,
+it_titem.ITEM_Sale_Price,
+it_titem.ITEM_Cost,
+it_tuser.USER_Login,
+it_tcategory.TAXPERC,
+it_titem.ITEM_Description,
+(IT_TDetaMove.Move_Deta_K * IT_TDetaMove.Move_Deta_Q / IT_TDetaMove.Move_Deta_Q) AS UCOST,
+(IT_TDetaMove.Move_Deta_price * IT_TDetaMove.Move_Deta_Q / IT_TDetaMove.Move_Deta_Q) AS Pprice,
+it_tdetamove.Move_Deta_Q AS Q,
+it_tdetamove.Move_Deta_Tax_Value AS TX1,
+it_tdetamove.Move_Deta_Tax2_Value AS TX2,
+it_tdetamove.Move_Deta_Tax3_Value AS TX3,
+(it_tdetamove.Move_Deta_Tax_Value + it_tdetamove.Move_Deta_Tax2_Value + it_tdetamove.Move_Deta_Tax3_Value) AS Tx,
+it_tdetamove.Move_Deta_K,
+it_tdetamove.Move_Deta_price,
+it_tcategory.Cate_id,
+it_tcategory.Cate_Name
+FROM
+it_tdetamove
+INNER JOIN
+it_titem ON (it_tdetamove.Move_Deta_ITEM_ID = it_titem.ITEM_ID)
+INNER JOIN
+it_taccount ON (it_taccount.Acco_ID = it_titem.ITEM_Inco_Account_ID)
+INNER JOIN
+it_taccotype ON (it_taccotype.AcTy_ID = it_taccount.Acco_Type_ID)
+INNER JOIN
+it_tmove ON (it_tdetamove.Move_Deta_Move_ID = it_tmove.Move_ID)
+INNER JOIN
+it_tcategory ON (it_titem.ITEM_Cate_ID = it_tcategory.Cate_ID)
+INNER JOIN
+it_taccotypegeneral ON (it_taccotype.Acco_GEN_ID = it_taccotypegeneral.Gen_account)
+LEFT JOIN
+it_tuser ON (it_tdetamove.order_host = it_tuser.USER_ID)
+WHERE
+it_titem.ITEM_Inco_Account_ID = 1
+AND it_tmove.Move_Oper_ID = 2
+AND it_tdetamove.Move_Deta_price <> 0
+AND it_taccotypegeneral.Gen_account = 2
+AND it_tmove.Move_Date BETWEEN '2016-03-19 00:00:00' AND '2017-03-19 23:59:59'
+ORDER BY it_tcategory.Cate_Name ASC , it_titem.ITEM_ID ASC , it_tdetamove.Move_Deta_Q DESC

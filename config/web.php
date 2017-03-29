@@ -3,7 +3,7 @@
 $params = require(__DIR__ . '/params.php');
 
 $config = [
-    'id' => 'basic',
+    'id' => 'WebReports',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'components' => [
@@ -40,14 +40,14 @@ $config = [
         'db' => require(__DIR__ . '/db.php'),
         /*
         'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
-            ],
-        ],
-        */
+        'enablePrettyUrl' => true,
+        'showScriptName' => false,
+        'rules' => [
     ],
-    'params' => $params,
+],
+*/
+],
+'params' => $params,
 ];
 
 if (YII_ENV_DEV) {
@@ -58,7 +58,7 @@ if (YII_ENV_DEV) {
         // uncomment the following to add your IP if you are not connecting from localhost.
         //'allowedIPs' => ['127.0.0.1', '::1'],
     ];
-
+    
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',

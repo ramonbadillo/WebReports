@@ -16,7 +16,7 @@ SUM(IT_TDetaMove.Move_Deta_price * IT_TDetaMove.Move_Deta_Q + it_tdetamove.Move_
 ->join('INNER JOIN', 'it_tmove','it_tdetamove.Move_Deta_Move_ID = it_tmove.Move_ID')
 ->join('INNER JOIN', 'it_titem','it_tdetamove.Move_Deta_ITEM_ID = it_titem.ITEM_ID')
 ->join('INNER JOIN', 'it_tcategory','it_titem.ITEM_Cate_ID = it_tcategory.Cate_ID')
-->where(['between', 'it_tmove.Move_Date', "2015-05-21", "2017-05-22" ])
+->where(['between', 'it_tmove.Move_Date', "2016-05-21", "2016-06-22" ])
 
 ->groupBy(['it_titem.ITEM_ID'])
 

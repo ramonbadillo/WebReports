@@ -16,6 +16,3 @@ $RECYCLE.BIN/
 
 # Mac crap
 .DS_Store
-
-
-config/db.php

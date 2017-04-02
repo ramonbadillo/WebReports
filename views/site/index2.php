@@ -9,7 +9,7 @@ use yii\db\Query;
 $query = new Query;
 $query2 = new Query;
 // compose the query
-$query->select('it_titem.ITEM_ID,it_titem.ITEM_Description, it_tcategory.Cate_Name, IT_TDetaMove.Move_Deta_price, SUM(IT_TDetaMove.Move_Deta_Q),
+$query->select('it_titem.ITEM_ID,it_titem.ITEM_Description, it_tcategory.Cate_Name, IT_TDetaMove.Move_Deta_price, SUM(IT_TDetaMove.Move_Deta_Q) AS itemQuantity,
 SUM(IT_TDetaMove.Move_Deta_price * IT_TDetaMove.Move_Deta_Q + it_tdetamove.Move_Deta_Tax_Value ) AS Pprice
 ')
 ->from('it_tdetamove')
@@ -93,7 +93,7 @@ $categories = $query2->createCommand()->queryAll();
                             </td>
                             <td class="number">
                                 <?=
-                                $quantity = number_format($currentItem['SUM(IT_TDetaMove.Move_Deta_Q)'],2);
+                                $quantity = number_format($currentItem['itemQuantity'],2);
                                 Html::encode("{$quantity}");
                                 ?>
                             </td>

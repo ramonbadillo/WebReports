@@ -26,6 +26,10 @@ AppAsset::register($this);
     <link rel="shortcut icon" href="assets/img/logo-fav.png">
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+    <link rel="stylesheet" type="text/css" href="assets/lib/datetimepicker/css/bootstrap-datetimepicker.min.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/lib/daterangepicker/css/daterangepicker.css"/>
+    
+    
     
     <link rel="stylesheet" type="text/css" href="assets/lib/perfect-scrollbar/css/perfect-scrollbar.min.css"/>
     <link rel="stylesheet" type="text/css" href="assets/lib/material-design-icons/css/material-design-iconic-font.min.css"/><!--[if lt IE 9]>
@@ -553,14 +557,23 @@ AppAsset::register($this);
                                                                                                     </div>
                                                                                                 </footer>
                                                                                                 <?php $this->endBody() ?>
-                                                                                                
+                                                                                                <script src="assets/js/main.js" type="text/javascript"></script>
                                                                                                 <script src="assets/lib/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
                                                                                                 <script src="assets/js/main.js" type="text/javascript"></script>
-                                                                                                
+                                                                                                <script src="assets/lib/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
+                                                                                                <script src="assets/lib/jquery.nestable/jquery.nestable.js" type="text/javascript"></script>
+                                                                                                <script src="assets/lib/moment.js/min/moment.min.js" type="text/javascript"></script>
+                                                                                                <script src="assets/lib/datetimepicker/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+                                                                                                <script src="assets/lib/daterangepicker/js/daterangepicker.js" type="text/javascript"></script>
+                                                                                                <script src="assets/lib/select2/js/select2.min.js" type="text/javascript"></script>
+                                                                                                <script src="assets/lib/select2/js/select2.full.min.js" type="text/javascript"></script>
+                                                                                                <script src="assets/lib/bootstrap-slider/js/bootstrap-slider.js" type="text/javascript"></script>
+                                                                                                <script src="assets/js/app-form-elements.js" type="text/javascript"></script>
                                                                                                 <script type="text/javascript">
                                                                                                 $(document).ready(function(){
                                                                                                     //initialize the javascript
                                                                                                     App.init();
+                                                                                                    App.formElements();
                                                                                                 });
                                                                                                 
                                                                                                 </script>

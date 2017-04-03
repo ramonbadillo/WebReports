@@ -5,12 +5,18 @@ use yii\grid\GridView;
 use yii\data\ActiveDataProvider;
 use yii\helpers\Html;
 use yii\db\Query;
+
+?>
+
+
+
+<?php
 /* @var $this yii\web\View */
 $query = new Query;
 $query2 = new Query;
 // compose the query
-$query->select('it_titem.ITEM_ID,it_titem.ITEM_Description, it_tcategory.Cate_Name, IT_TDetaMove.Move_Deta_price, SUM(IT_TDetaMove.Move_Deta_Q) AS itemQuantity,
-SUM(IT_TDetaMove.Move_Deta_price * IT_TDetaMove.Move_Deta_Q + it_tdetamove.Move_Deta_Tax_Value ) AS Pprice
+$query->select('it_titem.ITEM_ID,it_titem.ITEM_Description, it_tcategory.Cate_Name, it_tdetamove.Move_Deta_price, SUM(it_tdetamove.Move_Deta_Q) AS itemQuantity,
+SUM(it_tdetamove.Move_Deta_price * it_tdetamove.Move_Deta_Q + it_tdetamove.Move_Deta_Tax_Value ) AS Pprice
 ')
 ->from('it_tdetamove')
 ->join('INNER JOIN', 'it_tmove','it_tdetamove.Move_Deta_Move_ID = it_tmove.Move_ID')

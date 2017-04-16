@@ -53,21 +53,23 @@ class SiteController extends Controller
             ];
       }
       
-      
-      
+
       /**
       * Displays homepage.
       *
       * @return string
       */
       public function actionIndex()
-      {
+      { 
+            $this->layout = 'login';
+
             if (!Yii::$app->user->isGuest) {
                   return $this->render('index2');
             }else{
                   return $this->redirect(['login']);
             }
             
+
       }
       
       /**
@@ -77,6 +79,7 @@ class SiteController extends Controller
       */
       public function actionLogin()
       {
+
             $this->layout = 'login';
             if (!Yii::$app->user->isGuest) {
                   return $this->goHome();
@@ -101,9 +104,20 @@ class SiteController extends Controller
             //$this->layout = 'login';
             Yii::$app->user->logout();
             
-            return $this->goHome();
+            if (!Yii::$app->user->isGuest) {
+                  return $this->goHome();
+            }
+            
+            $model = new LoginForm();
+            if ($model->load(Yii::$app->request->post()) && $model->login()) {
+                  return $this->goBack();
+            }
+            return $this->render('login', [
+                  'model' => $model,
+            ]);
       }
       
+
       /**
       * Displays contact page.
       *

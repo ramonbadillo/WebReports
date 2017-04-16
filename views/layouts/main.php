@@ -18,12 +18,19 @@ AppAsset::register($this);
 <head>
       <meta charset="<?= Yii::$app->charset ?>">
       <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+      <meta property="og:image" content="http://camaleonsystems.com/assets/img/logo.png" />
+      <meta property="og:url"content="http://camaleonsystems.com" />
+      
+      <meta property="og:title" content="Camaleon Reports" />
+
       
       
       <?= Html::csrfMetaTags() ?>
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="description" content="">
       <meta name="author" content="">
+
       <link rel="shortcut icon" href="<?= Yii::$app->request->baseUrl ?>/assets/img/logo-fav.png">
       <title><?= Html::encode($this->title) ?></title>
       <?php $this->head() ?>
@@ -33,13 +40,22 @@ AppAsset::register($this);
       
       
       <link rel="stylesheet" type="text/css" href="<?= Yii::$app->request->baseUrl ?>/assets/lib/perfect-scrollbar/css/perfect-scrollbar.min.css"/>
-      <link rel="stylesheet" type="text/css" href="<?= Yii::$app->request->baseUrl ?>/assets/lib/material-design-icons/css/material-design-iconic-font.min.css"/><!--[if lt IE 9]>
+      <link rel="stylesheet" type="text/css" href="<?= Yii::$app->request->baseUrl ?>/assets/lib/material-design-icons/css/material-design-iconic-font.min.css"/>
+
+            <link rel="shortcut icon" href="assets/img/logo-fav.png">
+      <title><?= Html::encode($this->title) ?></title>
+      <?php $this->head() ?>
+      <!--[if lt IE 9]>
+
+
             
             <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
             <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
             <![endif]-->
             
+
             <link rel="stylesheet" href="<?= Yii::$app->request->baseUrl ?>/assets/css/style.css" type="text/css"/>
+
       </head>
       <body>
             <?php $this->beginBody() ?>
@@ -64,7 +80,9 @@ AppAsset::register($this);
                                           '<li>'
                                           . Html::beginForm(['/site/logout'], 'post')
                                           . Html::submitButton(
+
                                                 'Logout (' . Yii::$app->user->identity->user_name . ')',
+
                                                 ['class' => 'btn btn-link logout']
                                                 )
                                                 . Html::endForm()
@@ -80,16 +98,19 @@ AppAsset::register($this);
                                                 </div>
                                                 <div class="be-right-navbar">
                                                       <ul class="nav navbar-nav navbar-right be-user-nav">
+
                                                             <li class="dropdown"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="dropdown-toggle"><img src="<?= Yii::$app->request->baseUrl ?>/assets/img/avatar.png" alt="Avatar"><span class="user-name">Túpac Amaru</span></a>
                                                                   <ul role="menu" class="dropdown-menu">
                                                                         <li>
                                                                               <div class="user-info">
                                                                                     <div class="user-name"><?php echo Yii::$app->user->identity->username ?></div>
+
                                                                                     <div class="user-position online">Available</div>
                                                                               </div>
                                                                         </li>
                                                                         <li><a href="#"><span class="icon mdi mdi-face"></span> Account</a></li>
                                                                         <li><a href="#"><span class="icon mdi mdi-settings"></span> Settings</a></li>
+
                                                                         
                                                                         <li><?= Html::a('<span class="icon mdi mdi-power"></span> Logout', ['site/logout'], ['data' => ['method' => 'post']]) ?><li>
                                                                               
@@ -226,6 +247,7 @@ AppAsset::register($this);
                                                                                                 <li class="divider">Features</li>
                                                                                                 
                                                                                                 
+
                                                                                                 <li class="parent"><a href="#"><i class="icon mdi mdi-folder"></i><span>Menu Levels</span></a>
                                                                                                       <ul class="sub-menu">
                                                                                                             <li class="parent"><a href="#"><i class="icon mdi mdi-undefined"></i><span>Level 1</span></a>
@@ -245,6 +267,7 @@ AppAsset::register($this);
                                                                                                             <li class="parent"><a href="#"><i class="icon mdi mdi-undefined"></i><span>Level 1</span></a>
                                                                                                                   <ul class="sub-menu">
                                                                                                                         <li><a href="#"><i class="icon mdi mdi-undefined"></i><span>Level 2</span></a>
+
                                                                                                                         </li>
                                                                                                                         <li class="parent"><a href="#"><i class="icon mdi mdi-undefined"></i><span>Level 2</span></a>
                                                                                                                               <ul class="sub-menu">
@@ -390,11 +413,13 @@ AppAsset::register($this);
                                                                                                                                                                         <input type="checkbox" name="st8" id="st8"><span>
                                                                                                                                                                               <label for="st8"></label></span>
                                                                                                                                                                         </div><span class="name">Deploy on commit</span>
+
                                                                                                                                                                   </li>
                                                                                                                                                             </ul>
                                                                                                                                                       </div>
                                                                                                                                                 </div>
                                                                                                                                           </div>
+
                                                                                                                                     </div>
                                                                                                                               </div>
                                                                                                                         </div>
@@ -432,3 +457,4 @@ AppAsset::register($this);
                                                                                                       </body>
                                                                                                       </html>
                                                                                                       <?php $this->endPage() ?>
+

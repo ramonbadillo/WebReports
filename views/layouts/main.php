@@ -7,6 +7,7 @@ use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
+use yii\widgets\Menu;
 use app\assets\AppAsset;
 
 AppAsset::register($this);
@@ -142,264 +143,292 @@ AppAsset::register($this);
                                                                               <div class="left-sidebar-spacer">
                                                                                     <div class="left-sidebar-scroll">
                                                                                           <div class="left-sidebar-content">
-                                                                                                <ul class="sidebar-elements">
-                                                                                                      <li class="divider">Menu</li>
-                                                                                                      
-                                                                                                      <li><a href=""><i class="icon mdi mdi-home"></i><span>Home</span></a></li>
-                                                                                                      
-                                                                                                      
-                                                                                                      <li class="divider">REPORTS</li>
-                                                                                                      <li class="parent"><a href="#"><i class="icon mdi mdi-chart"></i><span>Sales Reports</span></a>
-                                                                                                            <ul class="sub-menu">
-                                                                                                                  
-                                                                                                                  <li><?= Html::a('By Category', ['sales/category'], ['data' => ['method' => 'post']]) ?></li>
-                                                                                                                  <li><?= Html::a('By Class', ['sales/category'], ['data' => ['method' => 'post']]) ?></li>
-                                                                                                                  <li><?= Html::a('By Department', ['sales/category'], ['data' => ['method' => 'post']]) ?></li>
-                                                                                                                  <li><?= Html::a('By Family', ['sales/category'], ['data' => ['method' => 'post']]) ?></li>
-                                                                                                                  <li><?= Html::a('By Subfamily', ['sales/category'], ['data' => ['method' => 'post']]) ?></li>
-                                                                                                                  <li><?= Html::a('By Subcategory', ['sales/category'], ['data' => ['method' => 'post']]) ?></li>
-                                                                                                                  <li><?= Html::a('By Employee', ['sales/category'], ['data' => ['method' => 'post']]) ?></li>
-                                                                                                                  
-                                                                                                                  
-                                                                                                            </ul>
-                                                                                                      </li>
-                                                                                                      <li class="parent"><a href="#"><i class="icon mdi mdi-trending-up"></i><span>Sales Analisys</span></a>
-                                                                                                            <ul class="sub-menu">
-                                                                                                                  
-                                                                                                                  
-                                                                                                            </ul>
-                                                                                                      </li>
-                                                                                                      <li class="parent"><a href="#"><i class="icon mdi mdi-money-box"></i><span>Purchases Reports</span></a>
-                                                                                                            <ul class="sub-menu">
-                                                                                                                  
-                                                                                                                  <li><?= Html::a('By Category', ['sales/category'], ['data' => ['method' => 'post']]) ?></li>
-                                                                                                                  <li><?= Html::a('By Class', ['sales/category'], ['data' => ['method' => 'post']]) ?></li>
-                                                                                                                  
-                                                                                                            </ul>
-                                                                                                      </li>
-                                                                                                      <li class="parent"><a href="#"><i class="icon mdi mdi-accounts"></i><span>Fidelity Reports</span></a>
-                                                                                                            <ul class="sub-menu">
-                                                                                                                  
-                                                                                                                  <li><?= Html::a('By Category', ['sales/category'], ['data' => ['method' => 'post']]) ?></li>
-                                                                                                                  <li><?= Html::a('By Class', ['sales/category'], ['data' => ['method' => 'post']]) ?></li>
-                                                                                                                  
-                                                                                                            </ul>
-                                                                                                      </li>
-                                                                                                      <li class="parent"><a href="#"><i class="icon mdi mdi-collection-text"></i><span>Custom Reports</span></a>
-                                                                                                            <ul class="sub-menu">
-                                                                                                                  
-                                                                                                                  <li><?= Html::a('New Report', ['sales/category'], ['data' => ['method' => 'post']]) ?></li>
-                                                                                                                  <li><?= Html::a('My Custom Report1', ['sales/category'], ['data' => ['method' => 'post']]) ?></li>
-                                                                                                                  
-                                                                                                            </ul>
-                                                                                                      </li>
-                                                                                                      
-                                                                                                      <li class="divider">Features</li>
+                                                                                                <?php
+                                                                                                echo Menu::widget([
+                                                                                                      'items' => [
+                                                                                                            ['label' => 'Home', 'url' => ['site/index'],'icono' => 'mdi-chart',],
+                                                                                                            ['label' => 'About', 'url' => ['site/about'],'icon' => 'mdi-chart',],
+                                                                                                            ['label' => 'Products',
+                                                                                                            'url' => ['product/index'],
+                                                                                                            'icon' => 'mdi-chart',
+                                                                                                            'items' => [
+                                                                                                                  ['label' => 'New Arrivals', 'url' => ['product/index'],'icon' => 'mdi-chart',],
+                                                                                                            ],
+                                                                                                      ],
                                                                                                       
                                                                                                       
-                                                                                                      <li class="parent"><a href="#"><i class="icon mdi mdi-folder"></i><span>Menu Levels</span></a>
-                                                                                                            <ul class="sub-menu">
-                                                                                                                  <li class="parent"><a href="#"><i class="icon mdi mdi-undefined"></i><span>Level 1</span></a>
-                                                                                                                        <ul class="sub-menu">
-                                                                                                                              <li><a href="#"><i class="icon mdi mdi-undefined"></i><span>Level 2</span></a>
-                                                                                                                              </li>
-                                                                                                                              <li class="parent"><a href="#"><i class="icon mdi mdi-undefined"></i><span>Level 2</span></a>
-                                                                                                                                    <ul class="sub-menu">
-                                                                                                                                          <li><a href="#"><i class="icon mdi mdi-undefined"></i><span>Level 3</span></a>
-                                                                                                                                          </li>
-                                                                                                                                          <li><a href="#"><i class="icon mdi mdi-undefined"></i><span>Level 3</span></a>
-                                                                                                                                          </li>
-                                                                                                                                    </ul>
-                                                                                                                              </li>
-                                                                                                                        </ul>
-                                                                                                                  </li>
-                                                                                                                  <li class="parent"><a href="#"><i class="icon mdi mdi-undefined"></i><span>Level 1</span></a>
-                                                                                                                        <ul class="sub-menu">
-                                                                                                                              <li><a href="#"><i class="icon mdi mdi-undefined"></i><span>Level 2</span></a>
-                                                                                                                              </li>
-                                                                                                                              <li class="parent"><a href="#"><i class="icon mdi mdi-undefined"></i><span>Level 2</span></a>
-                                                                                                                                    <ul class="sub-menu">
-                                                                                                                                          <li><a href="#"><i class="icon mdi mdi-undefined"></i><span>Level 3</span></a>
-                                                                                                                                          </li>
-                                                                                                                                          <li><a href="#"><i class="icon mdi mdi-undefined"></i><span>Level 3</span></a>
-                                                                                                                                          </li>
-                                                                                                                                    </ul>
-                                                                                                                              </li>
-                                                                                                                        </ul>
-                                                                                                                  </li>
-                                                                                                            </ul>
-                                                                                                      </li>
-                                                                                                </ul>
-                                                                                          </div>
+                                                                                                ],
+                                                                                                'itemOptions'=>array('id'=>'item_id', 'class'=>'', 'style'=>''),
+                                                                                                'options' => [
+                                                                                                      'class' => 'sidebar-elements',
+                                                                                                      'id'=>'navbar-id',
+                                                                                                ],
+                                                                                                'labelTemplate' =>'{label} Label',
+                                                                                                //'iconTemplate' =>'{icon} Icon',
+                                                                                                'linkTemplate' => '<a href="{url}"><i class="icon mdi {icon}"></i><span>{label}</span></a>',
+                                                                                                
+                                                                                                
+                                                                                          ]);
+                                                                                          ?>
+                                                                                          <ul class="sidebar-elements">
+                                                                                                <li class="divider">Menu</li>
+                                                                                                
+                                                                                                <li><a href=""><i class="icon mdi mdi-home"></i><span>Home</span></a></li>
+                                                                                                
+                                                                                                
+                                                                                                <li class="divider">REPORTS</li>
+                                                                                                <li class="parent"><a href="#"><i class="icon mdi mdi-chart"></i><span>Sales Reports</span></a>
+                                                                                                      <ul class="sub-menu">
+                                                                                                            
+                                                                                                            
+                                                                                                            <li><?= Html::a('By Category', ['sales/category'], ['data' => ['method' => 'post']]) ?></li>
+                                                                                                            <li><?= Html::a('By Class', ['sales/category'], ['data' => ['method' => 'post']]) ?></li>
+                                                                                                            <li><?= Html::a('By Department', ['sales/category'], ['data' => ['method' => 'post']]) ?></li>
+                                                                                                            <li><?= Html::a('By Family', ['sales/category'], ['data' => ['method' => 'post']]) ?></li>
+                                                                                                            <li><?= Html::a('By Subfamily', ['sales/category'], ['data' => ['method' => 'post']]) ?></li>
+                                                                                                            <li><?= Html::a('By Subcategory', ['sales/category'], ['data' => ['method' => 'post']]) ?></li>
+                                                                                                            <li><?= Html::a('By Employee', ['sales/category'], ['data' => ['method' => 'post']]) ?></li>
+                                                                                                            
+                                                                                                            
+                                                                                                      </ul>
+                                                                                                </li>
+                                                                                                <li class="parent"><a href="#"><i class="icon mdi mdi-trending-up"></i><span>Sales Analisys</span></a>
+                                                                                                      <ul class="sub-menu">
+                                                                                                            
+                                                                                                            
+                                                                                                      </ul>
+                                                                                                </li>
+                                                                                                <li class="parent"><a href="#"><i class="icon mdi mdi-money-box"></i><span>Purchases Reports</span></a>
+                                                                                                      <ul class="sub-menu">
+                                                                                                            
+                                                                                                            <li><?= Html::a('By Category', ['sales/category'], ['data' => ['method' => 'post']]) ?></li>
+                                                                                                            <li><?= Html::a('By Class', ['sales/category'], ['data' => ['method' => 'post']]) ?></li>
+                                                                                                            
+                                                                                                      </ul>
+                                                                                                </li>
+                                                                                                <li class="parent"><a href="#"><i class="icon mdi mdi-accounts"></i><span>Fidelity Reports</span></a>
+                                                                                                      <ul class="sub-menu">
+                                                                                                            
+                                                                                                            <li><?= Html::a('By Category', ['sales/category'], ['data' => ['method' => 'post']]) ?></li>
+                                                                                                            <li><?= Html::a('By Class', ['sales/category'], ['data' => ['method' => 'post']]) ?></li>
+                                                                                                            
+                                                                                                      </ul>
+                                                                                                </li>
+                                                                                                <li class="parent"><a href="#"><i class="icon mdi mdi-collection-text"></i><span>Custom Reports</span></a>
+                                                                                                      <ul class="sub-menu">
+                                                                                                            
+                                                                                                            <li><?= Html::a('New Report', ['sales/category'], ['data' => ['method' => 'post']]) ?></li>
+                                                                                                            <li><?= Html::a('My Custom Report1', ['sales/category'], ['data' => ['method' => 'post']]) ?></li>
+                                                                                                            
+                                                                                                      </ul>
+                                                                                                </li>
+                                                                                                
+                                                                                                <li class="divider">Features</li>
+                                                                                                
+                                                                                                
+                                                                                                <li class="parent"><a href="#"><i class="icon mdi mdi-folder"></i><span>Menu Levels</span></a>
+                                                                                                      <ul class="sub-menu">
+                                                                                                            <li class="parent"><a href="#"><i class="icon mdi mdi-undefined"></i><span>Level 1</span></a>
+                                                                                                                  <ul class="sub-menu">
+                                                                                                                        <li><a href="#"><i class="icon mdi mdi-undefined"></i><span>Level 2</span></a>
+                                                                                                                        </li>
+                                                                                                                        <li class="parent"><a href="#"><i class="icon mdi mdi-undefined"></i><span>Level 2</span></a>
+                                                                                                                              <ul class="sub-menu">
+                                                                                                                                    <li><a href="#"><i class="icon mdi mdi-undefined"></i><span>Level 3</span></a>
+                                                                                                                                    </li>
+                                                                                                                                    <li><a href="#"><i class="icon mdi mdi-undefined"></i><span>Level 3</span></a>
+                                                                                                                                    </li>
+                                                                                                                              </ul>
+                                                                                                                        </li>
+                                                                                                                  </ul>
+                                                                                                            </li>
+                                                                                                            <li class="parent"><a href="#"><i class="icon mdi mdi-undefined"></i><span>Level 1</span></a>
+                                                                                                                  <ul class="sub-menu">
+                                                                                                                        <li><a href="#"><i class="icon mdi mdi-undefined"></i><span>Level 2</span></a>
+                                                                                                                        </li>
+                                                                                                                        <li class="parent"><a href="#"><i class="icon mdi mdi-undefined"></i><span>Level 2</span></a>
+                                                                                                                              <ul class="sub-menu">
+                                                                                                                                    <li><a href="#"><i class="icon mdi mdi-undefined"></i><span>Level 3</span></a>
+                                                                                                                                    </li>
+                                                                                                                                    <li><a href="#"><i class="icon mdi mdi-undefined"></i><span>Level 3</span></a>
+                                                                                                                                    </li>
+                                                                                                                              </ul>
+                                                                                                                        </li>
+                                                                                                                  </ul>
+                                                                                                            </li>
+                                                                                                      </ul>
+                                                                                                </li>
+                                                                                          </ul>
                                                                                     </div>
                                                                               </div>
-                                                                              <div class="progress-widget">
-                                                                                    <div class="progress-data"><span class="progress-value">10%</span><span class="name">Current Project</span></div>
-                                                                                    <div class="progress">
-                                                                                          <div style="width: 10%;" class="progress-bar progress-bar-primary"></div>
-                                                                                    </div>
+                                                                        </div>
+                                                                        <div class="progress-widget">
+                                                                              <div class="progress-data"><span class="progress-value">10%</span><span class="name">Current Project</span></div>
+                                                                              <div class="progress">
+                                                                                    <div style="width: 10%;" class="progress-bar progress-bar-primary"></div>
                                                                               </div>
                                                                         </div>
                                                                   </div>
-                                                                  <div class="be-content">
-                                                                        <div class="main-content container-fluid">
-                                                                              <?= Breadcrumbs::widget([
-                                                                                    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-                                                                                    ]) ?>
-                                                                                    <?= $content ?>
-                                                                                    
-                                                                                    
-                                                                              </div>
+                                                            </div>
+                                                            <div class="be-content">
+                                                                  <div class="main-content container-fluid">
+                                                                        <?= Breadcrumbs::widget([
+                                                                              'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                                                                              ]) ?>
+                                                                              <?= $content ?>
+                                                                              
+                                                                              
                                                                         </div>
-                                                                        <nav class="be-right-sidebar">
-                                                                              <div class="sb-content">
-                                                                                    <div class="tab-navigation">
-                                                                                          <ul role="tablist" class="nav nav-tabs nav-justified">
-                                                                                                
-                                                                                                <li role="presentation" class="active"><a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">Locations</a></li>
-                                                                                                <li role="presentation"><a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">Settings</a></li>
-                                                                                          </ul>
-                                                                                    </div>
-                                                                                    <div class="tab-panel">
-                                                                                          <div class="tab-content">
-                                                                                                
-                                                                                                <div id="tab2" role="tabpanel" class="tab-pane tab-todo active">
-                                                                                                      <div class="todo-container">
-                                                                                                            <div class="todo-wrapper">
-                                                                                                                  <div class="be-scroller">
-                                                                                                                        <div class="todo-content"><span class="category-title">Texas</span>
-                                                                                                                              <ul class="todo-list">
-                                                                                                                                    <li>
-                                                                                                                                          <div class="be-checkbox be-checkbox-sm"><span class="delete mdi mdi-edit"></span>
-                                                                                                                                                
-                                                                                                                                                <label for="todo4">Morelos 1</label>
-                                                                                                                                          </div>
-                                                                                                                                    </li>
-                                                                                                                                    
-                                                                                                                              </ul><span class="category-title">Oklahoma</span>
-                                                                                                                              <ul class="todo-list">
-                                                                                                                                    <li>
-                                                                                                                                          <div class="be-checkbox be-checkbox-sm"><span class="delete mdi mdi-edit"></span>
-                                                                                                                                                
-                                                                                                                                                <label for="todo4">Morelos 2</label>
-                                                                                                                                          </div>
-                                                                                                                                    </li>
-                                                                                                                                    <li>
-                                                                                                                                          <div class="be-checkbox be-checkbox-sm"><span class="delete mdi mdi-edit"></span>
-                                                                                                                                                
-                                                                                                                                                <label for="todo5">Morelos 3</label>
-                                                                                                                                          </div>
-                                                                                                                                    </li>
-                                                                                                                                    <li>
-                                                                                                                                          <div class="be-checkbox be-checkbox-sm"><span class="delete mdi mdi-edit"></span>
-                                                                                                                                                
-                                                                                                                                                <label for="todo6">Morelos 6</label>
-                                                                                                                                          </div>
-                                                                                                                                    </li>
-                                                                                                                                    
-                                                                                                                              </ul>
-                                                                                                                        </div>
+                                                                  </div>
+                                                                  <nav class="be-right-sidebar">
+                                                                        <div class="sb-content">
+                                                                              <div class="tab-navigation">
+                                                                                    <ul role="tablist" class="nav nav-tabs nav-justified">
+                                                                                          
+                                                                                          <li role="presentation" class="active"><a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">Locations</a></li>
+                                                                                          <li role="presentation"><a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">Settings</a></li>
+                                                                                    </ul>
+                                                                              </div>
+                                                                              <div class="tab-panel">
+                                                                                    <div class="tab-content">
+                                                                                          
+                                                                                          <div id="tab2" role="tabpanel" class="tab-pane tab-todo active">
+                                                                                                <div class="todo-container">
+                                                                                                      <div class="todo-wrapper">
+                                                                                                            <div class="be-scroller">
+                                                                                                                  <div class="todo-content"><span class="category-title">Texas</span>
+                                                                                                                        <ul class="todo-list">
+                                                                                                                              <li>
+                                                                                                                                    <div class="be-checkbox be-checkbox-sm"><span class="delete mdi mdi-edit"></span>
+                                                                                                                                          
+                                                                                                                                          <label for="todo4">Morelos 1</label>
+                                                                                                                                    </div>
+                                                                                                                              </li>
+                                                                                                                              
+                                                                                                                        </ul><span class="category-title">Oklahoma</span>
+                                                                                                                        <ul class="todo-list">
+                                                                                                                              <li>
+                                                                                                                                    <div class="be-checkbox be-checkbox-sm"><span class="delete mdi mdi-edit"></span>
+                                                                                                                                          
+                                                                                                                                          <label for="todo4">Morelos 2</label>
+                                                                                                                                    </div>
+                                                                                                                              </li>
+                                                                                                                              <li>
+                                                                                                                                    <div class="be-checkbox be-checkbox-sm"><span class="delete mdi mdi-edit"></span>
+                                                                                                                                          
+                                                                                                                                          <label for="todo5">Morelos 3</label>
+                                                                                                                                    </div>
+                                                                                                                              </li>
+                                                                                                                              <li>
+                                                                                                                                    <div class="be-checkbox be-checkbox-sm"><span class="delete mdi mdi-edit"></span>
+                                                                                                                                          
+                                                                                                                                          <label for="todo6">Morelos 6</label>
+                                                                                                                                    </div>
+                                                                                                                              </li>
+                                                                                                                              
+                                                                                                                        </ul>
                                                                                                                   </div>
                                                                                                             </div>
-                                                                                                            <div class="bottom-input">
-                                                                                                                  <input type="text" placeholder="Create new task..." name="q"><span class="mdi mdi-plus"></span>
-                                                                                                            </div>
+                                                                                                      </div>
+                                                                                                      <div class="bottom-input">
+                                                                                                            <input type="text" placeholder="Create new task..." name="q"><span class="mdi mdi-plus"></span>
                                                                                                       </div>
                                                                                                 </div>
-                                                                                                <div id="tab3" role="tabpanel" class="tab-pane tab-settings">
-                                                                                                      <div class="settings-wrapper">
-                                                                                                            <div class="be-scroller"><span class="category-title">General</span>
-                                                                                                                  <ul class="settings-list">
+                                                                                          </div>
+                                                                                          <div id="tab3" role="tabpanel" class="tab-pane tab-settings">
+                                                                                                <div class="settings-wrapper">
+                                                                                                      <div class="be-scroller"><span class="category-title">General</span>
+                                                                                                            <ul class="settings-list">
+                                                                                                                  <li>
+                                                                                                                        <div class="switch-button switch-button-sm">
+                                                                                                                              <input type="checkbox" checked="" name="st1" id="st1"><span>
+                                                                                                                                    <label for="st1"></label></span>
+                                                                                                                              </div><span class="name">Available</span>
+                                                                                                                        </li>
                                                                                                                         <li>
                                                                                                                               <div class="switch-button switch-button-sm">
-                                                                                                                                    <input type="checkbox" checked="" name="st1" id="st1"><span>
-                                                                                                                                          <label for="st1"></label></span>
-                                                                                                                                    </div><span class="name">Available</span>
+                                                                                                                                    <input type="checkbox" checked="" name="st2" id="st2"><span>
+                                                                                                                                          <label for="st2"></label></span>
+                                                                                                                                    </div><span class="name">Enable notifications</span>
                                                                                                                               </li>
                                                                                                                               <li>
                                                                                                                                     <div class="switch-button switch-button-sm">
-                                                                                                                                          <input type="checkbox" checked="" name="st2" id="st2"><span>
-                                                                                                                                                <label for="st2"></label></span>
-                                                                                                                                          </div><span class="name">Enable notifications</span>
+                                                                                                                                          <input type="checkbox" checked="" name="st3" id="st3"><span>
+                                                                                                                                                <label for="st3"></label></span>
+                                                                                                                                          </div><span class="name">Login with Facebook</span>
                                                                                                                                     </li>
+                                                                                                                              </ul><span class="category-title">Notifications</span>
+                                                                                                                              <ul class="settings-list">
                                                                                                                                     <li>
                                                                                                                                           <div class="switch-button switch-button-sm">
-                                                                                                                                                <input type="checkbox" checked="" name="st3" id="st3"><span>
-                                                                                                                                                      <label for="st3"></label></span>
-                                                                                                                                                </div><span class="name">Login with Facebook</span>
+                                                                                                                                                <input type="checkbox" name="st4" id="st4"><span>
+                                                                                                                                                      <label for="st4"></label></span>
+                                                                                                                                                </div><span class="name">Email notifications</span>
                                                                                                                                           </li>
-                                                                                                                                    </ul><span class="category-title">Notifications</span>
-                                                                                                                                    <ul class="settings-list">
                                                                                                                                           <li>
                                                                                                                                                 <div class="switch-button switch-button-sm">
-                                                                                                                                                      <input type="checkbox" name="st4" id="st4"><span>
-                                                                                                                                                            <label for="st4"></label></span>
-                                                                                                                                                      </div><span class="name">Email notifications</span>
+                                                                                                                                                      <input type="checkbox" checked="" name="st5" id="st5"><span>
+                                                                                                                                                            <label for="st5"></label></span>
+                                                                                                                                                      </div><span class="name">Project updates</span>
                                                                                                                                                 </li>
                                                                                                                                                 <li>
                                                                                                                                                       <div class="switch-button switch-button-sm">
-                                                                                                                                                            <input type="checkbox" checked="" name="st5" id="st5"><span>
-                                                                                                                                                                  <label for="st5"></label></span>
-                                                                                                                                                            </div><span class="name">Project updates</span>
+                                                                                                                                                            <input type="checkbox" checked="" name="st6" id="st6"><span>
+                                                                                                                                                                  <label for="st6"></label></span>
+                                                                                                                                                            </div><span class="name">New comments</span>
                                                                                                                                                       </li>
                                                                                                                                                       <li>
                                                                                                                                                             <div class="switch-button switch-button-sm">
-                                                                                                                                                                  <input type="checkbox" checked="" name="st6" id="st6"><span>
-                                                                                                                                                                        <label for="st6"></label></span>
-                                                                                                                                                                  </div><span class="name">New comments</span>
+                                                                                                                                                                  <input type="checkbox" name="st7" id="st7"><span>
+                                                                                                                                                                        <label for="st7"></label></span>
+                                                                                                                                                                  </div><span class="name">Chat messages</span>
                                                                                                                                                             </li>
+                                                                                                                                                      </ul><span class="category-title">Workflow</span>
+                                                                                                                                                      <ul class="settings-list">
                                                                                                                                                             <li>
                                                                                                                                                                   <div class="switch-button switch-button-sm">
-                                                                                                                                                                        <input type="checkbox" name="st7" id="st7"><span>
-                                                                                                                                                                              <label for="st7"></label></span>
-                                                                                                                                                                        </div><span class="name">Chat messages</span>
+                                                                                                                                                                        <input type="checkbox" name="st8" id="st8"><span>
+                                                                                                                                                                              <label for="st8"></label></span>
+                                                                                                                                                                        </div><span class="name">Deploy on commit</span>
                                                                                                                                                                   </li>
-                                                                                                                                                            </ul><span class="category-title">Workflow</span>
-                                                                                                                                                            <ul class="settings-list">
-                                                                                                                                                                  <li>
-                                                                                                                                                                        <div class="switch-button switch-button-sm">
-                                                                                                                                                                              <input type="checkbox" name="st8" id="st8"><span>
-                                                                                                                                                                                    <label for="st8"></label></span>
-                                                                                                                                                                              </div><span class="name">Deploy on commit</span>
-                                                                                                                                                                        </li>
-                                                                                                                                                                  </ul>
-                                                                                                                                                            </div>
+                                                                                                                                                            </ul>
                                                                                                                                                       </div>
                                                                                                                                                 </div>
                                                                                                                                           </div>
                                                                                                                                     </div>
                                                                                                                               </div>
-                                                                                                                        </nav>
-                                                                                                                  </div>
-                                                                                                                  <footer class="footer">
-                                                                                                                        <div class="container">
-                                                                                                                              <p class="pull-left">&copy; Camaleon Systems <?= date('Y') ?></p>
-                                                                                                                              
-                                                                                                                              <p class="pull-right"><?= Yii::powered() ?></p>
                                                                                                                         </div>
-                                                                                                                  </footer>
-                                                                                                                  <?php $this->endBody() ?>
-                                                                                                                  <script src="<?= Yii::$app->request->baseUrl ?>/assets/js/main.js" type="text/javascript"></script>
-                                                                                                                  <script src="<?= Yii::$app->request->baseUrl ?>/assets/lib/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
-                                                                                                                  <script src="<?= Yii::$app->request->baseUrl ?>/assets/js/main.js" type="text/javascript"></script>
-                                                                                                                  <script src="<?= Yii::$app->request->baseUrl ?>/assets/lib/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
-                                                                                                                  <script src="<?= Yii::$app->request->baseUrl ?>/assets/lib/jquery.nestable/jquery.nestable.js" type="text/javascript"></script>
-                                                                                                                  <script src="<?= Yii::$app->request->baseUrl ?>/assets/lib/moment.js/min/moment.min.js" type="text/javascript"></script>
-                                                                                                                  <script src="<?= Yii::$app->request->baseUrl ?>/assets/lib/datetimepicker/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
-                                                                                                                  <script src="<?= Yii::$app->request->baseUrl ?>/assets/lib/daterangepicker/js/daterangepicker.js" type="text/javascript"></script>
-                                                                                                                  <script src="<?= Yii::$app->request->baseUrl ?>/assets/lib/select2/js/select2.min.js" type="text/javascript"></script>
-                                                                                                                  <script src="<?= Yii::$app->request->baseUrl ?>/assets/lib/select2/js/select2.full.min.js" type="text/javascript"></script>
-                                                                                                                  <script src="<?= Yii::$app->request->baseUrl ?>/assets/lib/bootstrap-slider/js/bootstrap-slider.js" type="text/javascript"></script>
-                                                                                                                  <script src="<?= Yii::$app->request->baseUrl ?>/assets/js/app-form-elements.js" type="text/javascript"></script>
-                                                                                                                  <script type="text/javascript">
-                                                                                                                  $(document).ready(function(){
-                                                                                                                        //initialize the javascript
-                                                                                                                        App.init();
-                                                                                                                        App.formElements();
-                                                                                                                  });
-                                                                                                                  
-                                                                                                                  </script>
-                                                                                                                  
-                                                                                                            </body>
-                                                                                                            </html>
-                                                                                                            <?php $this->endPage() ?>
+                                                                                                                  </nav>
+                                                                                                            </div>
+                                                                                                            <footer class="footer">
+                                                                                                                  <div class="container">
+                                                                                                                        <p class="pull-left">&copy; Camaleon Systems <?= date('Y') ?></p>
+                                                                                                                        
+                                                                                                                        <p class="pull-right"><?= Yii::powered() ?></p>
+                                                                                                                  </div>
+                                                                                                            </footer>
+                                                                                                            <?php $this->endBody() ?>
+                                                                                                            <script src="<?= Yii::$app->request->baseUrl ?>/assets/js/main.js" type="text/javascript"></script>
+                                                                                                            <script src="<?= Yii::$app->request->baseUrl ?>/assets/lib/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
+                                                                                                            <script src="<?= Yii::$app->request->baseUrl ?>/assets/js/main.js" type="text/javascript"></script>
+                                                                                                            <script src="<?= Yii::$app->request->baseUrl ?>/assets/lib/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
+                                                                                                            <script src="<?= Yii::$app->request->baseUrl ?>/assets/lib/jquery.nestable/jquery.nestable.js" type="text/javascript"></script>
+                                                                                                            <script src="<?= Yii::$app->request->baseUrl ?>/assets/lib/moment.js/min/moment.min.js" type="text/javascript"></script>
+                                                                                                            <script src="<?= Yii::$app->request->baseUrl ?>/assets/lib/datetimepicker/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+                                                                                                            <script src="<?= Yii::$app->request->baseUrl ?>/assets/lib/daterangepicker/js/daterangepicker.js" type="text/javascript"></script>
+                                                                                                            <script src="<?= Yii::$app->request->baseUrl ?>/assets/lib/select2/js/select2.min.js" type="text/javascript"></script>
+                                                                                                            <script src="<?= Yii::$app->request->baseUrl ?>/assets/lib/select2/js/select2.full.min.js" type="text/javascript"></script>
+                                                                                                            <script src="<?= Yii::$app->request->baseUrl ?>/assets/lib/bootstrap-slider/js/bootstrap-slider.js" type="text/javascript"></script>
+                                                                                                            <script src="<?= Yii::$app->request->baseUrl ?>/assets/js/app-form-elements.js" type="text/javascript"></script>
+                                                                                                            <script type="text/javascript">
+                                                                                                            $(document).ready(function(){
+                                                                                                                  //initialize the javascript
+                                                                                                                  App.init();
+                                                                                                                  App.formElements();
+                                                                                                            });
+                                                                                                            
+                                                                                                            </script>
+                                                                                                            
+                                                                                                      </body>
+                                                                                                      </html>
+                                                                                                      <?php $this->endPage() ?>

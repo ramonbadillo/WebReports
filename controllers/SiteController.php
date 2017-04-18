@@ -61,7 +61,7 @@ class SiteController extends Controller
       */
       public function actionIndex()
       { 
-            $this->layout = 'login';
+            
 
             if (!Yii::$app->user->isGuest) {
                   return $this->render('index2');
@@ -101,7 +101,7 @@ class SiteController extends Controller
       */
       public function actionLogout()
       {
-            //$this->layout = 'login';
+            $this->layout = 'login';
             Yii::$app->user->logout();
             
             if (!Yii::$app->user->isGuest) {

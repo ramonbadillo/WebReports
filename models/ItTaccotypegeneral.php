@@ -53,6 +53,7 @@ class ItTaccotypegeneral extends \yii\db\ActiveRecord
      */
     public function getItTaccotypes()
     {
+
         return $this->hasMany(ItTaccotype::className(), ['Acco_GEN_ID' => 'Gen_account']);
     }
 

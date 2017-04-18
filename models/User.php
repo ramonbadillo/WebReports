@@ -17,6 +17,8 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
       /**
       * @inheritdoc
       */
+      public $authKey;
+
       public static function tableName()
       {
             return 'reports_users';
@@ -105,8 +107,8 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
       */
       public function getAuthKey()
       {
-            //return $this->authKey;
-            throw new \yii\base\NotSupportedException();
+            return $this->authKey;
+            
       }
       /**
       * @inheritdoc

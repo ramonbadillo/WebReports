@@ -410,9 +410,12 @@ AppAsset::register($this);
                                                                                                                                                       <ul class="settings-list">
                                                                                                                                                             <li>
                                                                                                                                                                   <div class="switch-button switch-button-sm">
-                                                                                                                                                                        <input type="checkbox" name="st8" id="st8"><span>
-                                                                                                                                                                              <label for="st8"></label></span>
-                                                                                                                                                                        </div><span class="name">Deploy on commit</span>
+                                                                                                                                                                        <input type="checkbox" name="st8" id="st8">
+                                                                                                                                                                      <span>
+                                                                                                                                                                              <label for="st8"></label>
+                                                                                                                                                                      </span>
+                                                                                                                                                                        </div>
+                                                                                                                                                                <span class="name">Deploy on commit</span>
 
                                                                                                                                                                   </li>
                                                                                                                                                             </ul>

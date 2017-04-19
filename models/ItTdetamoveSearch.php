@@ -120,42 +120,35 @@ class ItTdetamoveSearch extends ItTdetamove
             
             $dataProvider = new SqlDataProvider([
                   //'sql' => 'SELECT * FROM it_tcategory',
+                  'sql' => 'SELECT SUM(it_tdetamove.Move_Deta_Q) AS contadito,it_tcategory.Cate_Name, '.
+                  'SUM(it_tdetamove.Move_Deta_Tax_Value+it_tdetamove.Move_Deta_Tax2_Value+it_tdetamove.Move_Deta_Tax3_Value) AS grandtotaltax, '.
+                  'SUM(it_tdetamove.Move_Deta_Tax_Value) AS totaltax, '.
+                  'SUM(it_tdetamove.Move_Deta_Tax2_Value) AS totaltax2, '.
+                  'SUM(it_tdetamove.Move_Deta_Tax3_Value) AS totaltax3, '.
+                  'SUM(it_tdetamove.Move_Deta_Q*it_tdetamove.Move_Deta_price)- '.
+                  'SUM(it_tdetamove.Move_Deta_Tax_Value+it_tdetamove.Move_Deta_Tax2_Value+it_tdetamove.Move_Deta_Tax3_Value) AS subtotal, '.
+                  'SUM(it_tdetamove.Move_Deta_Q*it_tdetamove.Move_Deta_price) AS grantotal '.
+                  'FROM it_tmove '.
+                  'INNER JOIN ((it_tcategory '.
+                  'INNER JOIN it_titem ON it_tcategory.Cate_ID = it_titem.ITEM_Cate_ID) INNER JOIN it_tdetamove '.
+                  'ON it_titem.ITEM_ID = it_tdetamove.Move_Deta_ITEM_ID) ON it_tmove.Move_ID = it_tdetamove.Move_Deta_Move_ID '.
+                  'WHERE it_tmove.Move_Date BETWEEN \''.$startDate.'\' AND \''.$endDate.' \' '.
+                  'AND it_tmove.Move_Oper_ID = 2 AND it_titem.ITEM_Inco_Account_ID=1  AND it_tdetamove.Move_Deta_price<>0 '.
+                  'GROUP BY it_tcategory.Cate_Name ',
                   
-                  'sql' => 'select it_titem.ITEM_ID, it_titem.ITEM_Sale_Price, it_titem.ITEM_Cost, it_tuser.USER_Login, it_tcategory.TAXPERC, '.
-                  ' it_titem.ITEM_Description, '.
-                  '(it_tdetamove.Move_Deta_K * it_tdetamove.Move_Deta_Q / it_tdetamove.Move_Deta_Q) AS UCOST,'.
-                  '(it_tdetamove.Move_Deta_price * it_tdetamove.Move_Deta_Q / it_tdetamove.Move_Deta_Q) AS Pprice, '.
                   
-                  ' it_tdetamove.Move_Deta_Q AS Q, it_tdetamove.Move_Deta_Tax_Value AS TX1, it_tdetamove.Move_Deta_Tax2_Value AS TX2, '.
-                  ' it_tdetamove.Move_Deta_Tax3_Value AS TX3, (it_tdetamove.Move_Deta_Tax_Value + it_tdetamove.Move_Deta_Tax2_Value + it_tdetamove.Move_Deta_Tax3_Value) AS Tx, '.
-                  ' it_tdetamove.Move_Deta_K, it_tdetamove.Move_Deta_price, it_tcategory.Cate_id, it_tcategory.Cate_Name AS quantity  '.
-                  'FROM it_tdetamove ' .
-                  
-                  'INNER JOIN it_titem ON (it_tdetamove.Move_Deta_ITEM_ID = it_titem.ITEM_ID) '.
-                  'INNER JOIN it_taccount ON (it_taccount.Acco_ID = it_titem.ITEM_Inco_Account_ID) '.
-                  'INNER JOIN it_taccotype ON (it_taccotype.AcTy_ID = it_taccount.Acco_Type_ID) '.
-                  'INNER JOIN it_tmove ON (it_tdetamove.Move_Deta_Move_ID = it_tmove.Move_ID) '.
-                  'INNER JOIN it_tcategory ON (it_titem.ITEM_Cate_ID = it_tcategory.Cate_ID) '.
-                  'INNER JOIN it_taccotypegeneral ON (it_taccotype.Acco_GEN_ID = it_taccotypegeneral.Gen_account) '.
-                  'LEFT JOIN it_tuser ON (it_tdetamove.order_host = it_tuser.USER_ID) '.
-                  'WHERE it_titem.ITEM_Inco_Account_ID = 1 '.
-                  'AND it_tmove.Move_Oper_ID = 2 '.
-                  'AND it_tdetamove.Move_Deta_price <> 0 '.
-                  'AND it_taccotypegeneral.Gen_account = 2 '.
-                  'AND it_tmove.Move_Date BETWEEN \''.$startDate.'\' AND \''.$endDate.' \'',
-                  //'ORDER BY it_tcategory.Cate_Name ASC , it_titem.ITEM_ID ASC , it_tdetamove.Move_Deta_Q DESC ',
                   'pagination' => [
                         'pageSize' => 20,
                   ],
-                  'totalCount' => 1000,
+                  'totalCount' => 5,
                   'sort' => [
                         'attributes' => [
-                              'ITEM_ID',
-                              'ITEM_Description' => [
-                                    'asc' => ['ITEM_Description' => SORT_ASC],
-                                    'desc' => ['ITEM_Description' => SORT_DESC],
+                              
+                              'Priority' => [
+                                    'asc' => ['Priority' => SORT_ASC],
+                                    'desc' => ['Priority' => SORT_DESC],
                                     'default' => SORT_DESC,
-                                    'label' => 'ITEM_Description',
+                                    'label' => 'Priority',
                               ],
                         ],
                   ],
@@ -165,3 +158,30 @@ class ItTdetamoveSearch extends ItTdetamove
             
       }
 }
+/*
+brian query
+'sql' => 'select it_titem.ITEM_ID, it_titem.ITEM_Sale_Price, it_titem.ITEM_Cost, it_tuser.USER_Login, it_tcategory.TAXPERC, '.
+' it_titem.ITEM_Description, '.
+'(it_tdetamove.Move_Deta_K * it_tdetamove.Move_Deta_Q / it_tdetamove.Move_Deta_Q) AS UCOST,'.
+'(it_tdetamove.Move_Deta_price * it_tdetamove.Move_Deta_Q / it_tdetamove.Move_Deta_Q) AS Pprice, '.
+
+' it_tdetamove.Move_Deta_Q AS Q, it_tdetamove.Move_Deta_Tax_Value AS TX1, it_tdetamove.Move_Deta_Tax2_Value AS TX2, '.
+' it_tdetamove.Move_Deta_Tax3_Value AS TX3, (it_tdetamove.Move_Deta_Tax_Value + it_tdetamove.Move_Deta_Tax2_Value + it_tdetamove.Move_Deta_Tax3_Value) AS Tx, '.
+' it_tdetamove.Move_Deta_K, it_tdetamove.Move_Deta_price, it_tcategory.Cate_id, it_tcategory.Cate_Name AS quantity  '.
+'FROM it_tdetamove ' .
+
+'INNER JOIN it_titem ON (it_tdetamove.Move_Deta_ITEM_ID = it_titem.ITEM_ID) '.
+'INNER JOIN it_taccount ON (it_taccount.Acco_ID = it_titem.ITEM_Inco_Account_ID) '.
+'INNER JOIN it_taccotype ON (it_taccotype.AcTy_ID = it_taccount.Acco_Type_ID) '.
+'INNER JOIN it_tmove ON (it_tdetamove.Move_Deta_Move_ID = it_tmove.Move_ID) '.
+'INNER JOIN it_tcategory ON (it_titem.ITEM_Cate_ID = it_tcategory.Cate_ID) '.
+'INNER JOIN it_taccotypegeneral ON (it_taccotype.Acco_GEN_ID = it_taccotypegeneral.Gen_account) '.
+'LEFT JOIN it_tuser ON (it_tdetamove.order_host = it_tuser.USER_ID) '.
+'WHERE it_titem.ITEM_Inco_Account_ID = 1 '.
+'AND it_tmove.Move_Oper_ID = 2 '.
+'AND it_tdetamove.Move_Deta_price <> 0 '.
+'AND it_taccotypegeneral.Gen_account = 2 '.
+'AND it_tmove.Move_Date BETWEEN \''.$startDate.'\' AND \''.$endDate.' \'',
+
+
+*/

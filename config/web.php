@@ -54,14 +54,14 @@ $config = [
             ],
             
             
-//            'urlManager' => [
-//                  'class' => 'yii\web\UrlManager',
-//                  'enablePrettyUrl' => true,
-//                  'showScriptName' => false,
-//                  'rules' => [
-//                        '<alias:\w+>' => 'site/<alias>',
-//                  ],
-//            ],
+            'urlManager' => [
+                  'class' => 'yii\web\UrlManager',
+                  'enablePrettyUrl' => true,
+                  'showScriptName' => false,
+                  'rules' => [
+                        '<alias:\w+>' => 'site/<alias>',
+                  ],
+            ],
             
       ],
       'modules'=>[

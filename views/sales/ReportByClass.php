@@ -3,6 +3,7 @@
 use miloschuman\highcharts\Highcharts;
 use miloschuman\highcharts\HighchartsAsset;
 use kartik\grid\GridView;
+use kartik\export\ExportMenu;
 use yii\data\ActiveDataProvider;
 use yii\helpers\Html;
 use yii\db\Query;
@@ -19,6 +20,7 @@ $this->title = 'Brians Query';
 ?>
 
 <div class="panel panel-default panel-table">
+      
       <div class="panel-heading">Brians Reports
             
       </div>

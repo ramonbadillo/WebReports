@@ -19,6 +19,26 @@ use yii\data\Pagination;
 
 $this->title = 'Report By Category';
 
+
+
+echo Highcharts::widget([
+   'options' => [
+     'chart' => ['type' => 'column'],
+      'title' => ['text' => 'Report by category'],
+      'xAxis' => [
+         'categories' => $dataX
+      ],
+      'yAxis' => [
+         'title' => ['text' => 'Sales']
+      ],
+      'series' => $dataValue
+       /*[
+         ['name' => 'Jane', 'data' => [1, 0, 4]],
+         ['name' => 'John', 'data' => [5, 7, 3]]
+      ]*/
+   ]
+]);
+
 ?>
 
 <div class="row">
@@ -43,11 +63,11 @@ $this->title = 'Report By Category';
 
 
 <div class="panel panel-default panel-table">
-      
+
       <div class="panel-body">
-            
+
             <?php
-            
+
             $gridColumns = [
                   ['class' => 'kartik\grid\SerialColumn'],
                   [
@@ -112,7 +132,7 @@ $this->title = 'Report By Category';
                         ExportMenu::FORMAT_CSV=>false,
                         ExportMenu::FORMAT_TEXT=>false,
                         ExportMenu::FORMAT_PDF=>false,
-                        
+
                   ],
                   'dropdownOptions' => [
                         'label' => 'Exportar',
@@ -144,31 +164,31 @@ $this->title = 'Report By Category';
                         $fullExportMenu,
                   ],
                   'id' => 'kv-grid-demo',
-                  
+
                   //'pager' => ['options' => ['class'=> 'pagination pull-right']],
                   //'tableOptions'=>['class'=>'table table-striped table-hover'],
-                  
+
                   'class' => 'table-responsive noSwipe',
                   'summary'=>'',
                   'showHeader' => true,
-                  
-                  
+
+
                   'showFooter'=>False,
-                  
+
                   'showPageSummary' => true,
-                  
+
             ]);
-            
-            
+
+
             //var_dump( Yii::$app->db->createCommand("SELECT * FROM it_tuser WHERE USER_ID = 1")->queryAll());
             //echo "-------------------------------------------------------";
             //var_dump( Yii::$app->db2->createCommand("SELECT * FROM it_tuser WHERE USER_ID = 1")->queryAll());
-            
-            
-            
-            
-            
+
+
+
+
+
             ?>
-            
+
       </div>
 </div>

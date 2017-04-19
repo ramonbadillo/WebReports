@@ -24,7 +24,7 @@ class SalesController extends Controller
       public function behaviors()
       {
             return [
-                  
+
                   'verbs' => [
                         'class' => VerbFilter::className(),
                         'actions' => [
@@ -33,7 +33,7 @@ class SalesController extends Controller
                   ],
             ];
       }
-      
+
       /**
       * @inheritdoc
       */
@@ -43,80 +43,107 @@ class SalesController extends Controller
                   'error' => [
                         'class' => 'yii\web\ErrorAction',
                   ],
-                  
+
             ];
       }
-      
-      public function actionCategory(){
-            $startDate = new \DateTime("first day of this month");
-            $endDate = new \DateTime("last day of this month");
-            $startDate = "2015-05-01 00:00:00";
-            $endDate = "2016-05-31 00:00:00";
-            
+
+      public function actionCategory() {
+        $dataGraph = [];
+
+            if (isset($_GET['startDate'])) {
+              $endDate = $_GET['endDate'];
+            } else {
+              $startDate = "2015-05-01 00:00:00";
+              //$startDate = new \DateTime("first day of this month");
+              //$startDate =  $startDate->format('Y-m-d H:i:s');
+            }
+            if (isset($_GET['endDate'])) {
+              $endDate = $_GET['endDate'];
+            } else {
+              $endDate = "2016-05-31 00:00:00";
+              //$endDate = new \DateTime("last day of this month");
+              //$endDate =  $endDate->format('Y-m-d H:i:s');
+            }
+
             $searchModel = new ItTdetamoveSearch();
             $dataProvider = $searchModel->getReportByCategory($startDate,$endDate);
-            //$dataProvider->pagination->pageSize=5;
-            
-            $pages = new Pagination(['totalCount'=>$dataProvider->totalCount]);
-            
-            //die();
+            // get the user records in the current page
+            $models = $dataProvider->getModels();
+            $dataX = [];
+            $dataValue = [];
+            foreach ($models as $key => $value) {
+              array_push($dataX, $value['Cate_Name']);
+              array_push(
+                $dataValue,
+                [
+                  'name' => $value['Cate_Name'],
+                  'data' => [ (int) $value['grantotal'] ]
+                ]
+              );
+            }
+          //  echo '<pre>';
+          //print_r($dataValue);
+          //  echo '<br>';
+            // die();
             return $this->render(
                   'ReportByCategory',
                   array(
                         'dataProvider' => $dataProvider,
-                        'pages' => $pages,
+                        //'pages' => $pages,
+                        'dataX' => $dataX,
+                        'dataValue' => $dataValue
                   )
             );
-            
-            
+
+
       }
-      
-      
+
+
       public function actionClass(){
-            
-            
+
+
             return $this->render(
                   'ReportByClass'
             );
       }
-      
+
       public function actionDeparment(){
-            
-            
+
+
             return $this->render(
                   'ReportByDeparment'
             );
       }
-      
+
       public function actionFamily(){
-            
+
             return $this->render(
                   'ReportByFamily'
             );
       }
-      
+
       public function actionSubfamily(){
-            
+
             return $this->render(
                   'ReportBySubfamily'
             );
       }
-      
+
       public function actionSubcategory(){
-            
+
             return $this->render(
                   'ReportBySubcategory'
             );
       }
-      
+
       public function actionEmployee(){
-            
+
             return $this->render(
                   'ReportByEmployee'
             );
       }
-      
-      
+
+
       /**
       * Displays homepage.
       *
@@ -126,23 +153,23 @@ class SalesController extends Controller
       {
             $month_ini = new \DateTime("first day of this month");
             $month_end = new \DateTime("last day of this month");
-            
+
             //echo $month_ini->format('Y-m-d H:i:s'); // 2012-02-01
             //echo $month_end->format('Y-m-d H:i:s'); // 2012-02-29
-            
-            
-            
-            
+
+
+
+
             //die();
             $startDate = $request->get('start',"2016-01-01 00:00:00");
             $endDate = $request->get('end',"2016-05-31 00:00:00");
-            
+
             $searchModel = new ItTdetamoveQuery();
             $dataProvider = $searchModel->getReportByCategory($startDate,$endDate);
-            
+
             return $this->render('index3');
-            
-            
+
+
       }
-      
+
 }

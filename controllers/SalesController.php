@@ -47,19 +47,52 @@ class SalesController extends Controller
             ];
       }
       
-      public function actionCategory(){
-            $startDate = new \DateTime("first day of this month");
-            $endDate = new \DateTime("last day of this month");
-            $startDate = "2015-05-01 00:00:00";
-            $endDate = "2016-05-31 00:00:00";
+      public function actionCategory() {
+            $dataGraph = [];
+            
+            if (isset($_GET['startDate'])) {
+                  $endDate = $_GET['endDate'];
+            } else {
+                  $startDate = "2015-05-01 00:00:00";
+                  //$startDate = new \DateTime("first day of this month");
+                  //$startDate =  $startDate->format('Y-m-d H:i:s');
+            }
+            if (isset($_GET['endDate'])) {
+                  $endDate = $_GET['endDate'];
+            } else {
+                  $endDate = "2016-05-31 00:00:00";
+                  //$endDate = new \DateTime("last day of this month");
+                  //$endDate =  $endDate->format('Y-m-d H:i:s');
+            }
             
             $searchModel = new ItTdetamoveSearch();
             $dataProvider = $searchModel->getReportByCategory($startDate,$endDate);
+            
+            // get the user records in the current page
+            $models = $dataProvider->getModels();
+            $dataX = [];
+            $dataValue = [];
+            foreach ($models as $key => $value) {
+                  array_push($dataX, $value['Cate_Name']);
+                  array_push(
+                        $dataValue,
+                        [
+                              'name' => $value['Cate_Name'],
+                              'data' => [ (int) $value['grantotal'] ]
+                        ]
+                  );
+            }
+            //  echo '<pre>';
+            //print_r($dataValue);
+            //  echo '<br>';
+            // die();
+            
             return $this->render(
                   'ReportByCategory',
                   array(
                         'dataProvider' => $dataProvider,
-                        
+                        'dataX' => $dataX,
+                        'dataValue' => $dataValue
                   )
             );
             
@@ -70,7 +103,6 @@ class SalesController extends Controller
       public function actionClass(){
             $startDate = "2015-05-01 00:00:00";
             $endDate = "2015-05-31 00:00:00";
-            
             $searchModel = new ItTdetamoveSearch();
             $dataProvider = $searchModel->getReportByClass($startDate,$endDate);
             

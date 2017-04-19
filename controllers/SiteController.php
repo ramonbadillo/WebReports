@@ -53,23 +53,23 @@ class SiteController extends Controller
             ];
       }
       
-
+      
       /**
       * Displays homepage.
       *
       * @return string
       */
       public function actionIndex()
-      { 
+      {
             
-
+            
             if (!Yii::$app->user->isGuest) {
-                  return $this->render('index2');
+                  return $this->render('index');
             }else{
                   return $this->redirect(['login']);
             }
             
-
+            
       }
       
       /**
@@ -79,7 +79,7 @@ class SiteController extends Controller
       */
       public function actionLogin()
       {
-
+            
             $this->layout = 'login';
             if (!Yii::$app->user->isGuest) {
                   return $this->goHome();
@@ -117,7 +117,7 @@ class SiteController extends Controller
             ]);
       }
       
-
+      
       /**
       * Displays contact page.
       *

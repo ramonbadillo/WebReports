@@ -55,16 +55,11 @@ class SalesController extends Controller
             
             $searchModel = new ItTdetamoveSearch();
             $dataProvider = $searchModel->getReportByCategory($startDate,$endDate);
-            //$dataProvider->pagination->pageSize=5;
-            
-            $pages = new Pagination(['totalCount'=>$dataProvider->totalCount]);
-            
-            //die();
             return $this->render(
                   'ReportByCategory',
                   array(
                         'dataProvider' => $dataProvider,
-                        'pages' => $pages,
+                        
                   )
             );
             
@@ -73,10 +68,18 @@ class SalesController extends Controller
       
       
       public function actionClass(){
+            $startDate = "2015-05-01 00:00:00";
+            $endDate = "2015-05-31 00:00:00";
             
+            $searchModel = new ItTdetamoveSearch();
+            $dataProvider = $searchModel->getReportByClass($startDate,$endDate);
             
             return $this->render(
-                  'ReportByClass'
+                  'ReportByClass',
+                  array(
+                        'dataProvider' => $dataProvider,
+                        
+                  )
             );
       }
       

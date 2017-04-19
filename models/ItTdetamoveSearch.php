@@ -157,6 +157,52 @@ class ItTdetamoveSearch extends ItTdetamove
             return $dataProvider;
             
       }
+      
+      
+      public function getReportByClass($startDate,$endDate){
+            
+            
+            $dataProvider = new SqlDataProvider([
+                  //'sql' => 'SELECT * FROM it_tcategory',
+                  'sql' => 'SELECT SUM(it_tdetamove.Move_Deta_Q) AS contadito, it_titemclass.Class_Name , '.
+                  'SUM(it_tdetamove.Move_Deta_Tax_Value+it_tdetamove.Move_Deta_Tax2_Value+it_tdetamove.Move_Deta_Tax3_Value) AS grandtotaltax, '.
+                  'SUM(it_tdetamove.Move_Deta_Tax_Value) AS totaltax, '.
+                  'SUM(it_tdetamove.Move_Deta_Tax2_Value) AS totaltax2, '.
+                  'SUM(it_tdetamove.Move_Deta_Tax3_Value) AS totaltax3, '.
+                  'SUM(it_tdetamove.Move_Deta_Q*it_tdetamove.Move_Deta_price)- '.
+                  'SUM(it_tdetamove.Move_Deta_Tax_Value+it_tdetamove.Move_Deta_Tax2_Value+it_tdetamove.Move_Deta_Tax3_Value) AS subtotal, '.
+                  'SUM(it_tdetamove.Move_Deta_Q*it_tdetamove.Move_Deta_price) AS grantotal '.
+                  'FROM it_tmove '.
+                  'INNER JOIN ((it_titemclass '.
+                  'INNER JOIN it_titem ON it_titemclass.Class_ID = it_titem.ITEM_Class_ID) INNER JOIN it_tdetamove '.
+                  'ON it_titem.ITEM_ID = it_tdetamove.Move_Deta_ITEM_ID) ON it_tmove.Move_ID = it_tdetamove.Move_Deta_Move_ID '.
+                  'WHERE it_tmove.Move_Date BETWEEN \''.$startDate.'\' AND \''.$endDate.' \' '.
+                  'AND it_tmove.Move_Oper_ID = 2 AND it_titem.ITEM_Inco_Account_ID=1  AND it_tdetamove.Move_Deta_price<>0 '.
+                  'GROUP BY it_titemclass.Class_Name ',
+                  
+                  
+                  'pagination' => [
+                        'pageSize' => 30,
+                  ],
+                  'totalCount' => 5,
+                  'sort' => [
+                        'attributes' => [
+                              
+                              'Priority' => [
+                                    'asc' => ['Priority' => SORT_ASC],
+                                    'desc' => ['Priority' => SORT_DESC],
+                                    'default' => SORT_DESC,
+                                    'label' => 'Priority',
+                              ],
+                        ],
+                  ],
+            ]);
+            
+            return $dataProvider;
+            
+      }
+      
+      
 }
 /*
 brian query

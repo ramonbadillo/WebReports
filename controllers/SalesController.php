@@ -53,16 +53,16 @@ class SalesController extends Controller
             if (isset($_GET['startDate'])) {
                   $endDate = $_GET['endDate'];
             } else {
-                  $startDate = "2015-05-01 00:00:00";
+                  $startDate = "2015-06-01 00:00:00";
                   //$startDate = new \DateTime("first day of this month");
-                  //$startDate =  $startDate->format('Y-m-d H:i:s');
+                  //$startDate =  $startDate->format('YY-mM-dd');
             }
             if (isset($_GET['endDate'])) {
                   $endDate = $_GET['endDate'];
             } else {
-                  $endDate = "2016-05-31 00:00:00";
-                  //$endDate = new \DateTime("last day of this month");
-                  //$endDate =  $endDate->format('Y-m-d H:i:s');
+                  $endDate = "2016-07-31 00:00:00";
+                  // $endDate = new \DateTime("last day of this month");
+                  // $endDate =  $endDate->format('YY-mM-dd');
             }
             
             $searchModel = new ItTdetamoveSearch();

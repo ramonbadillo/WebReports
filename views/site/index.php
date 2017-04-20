@@ -249,8 +249,3 @@ $this->registerJs("$(function () {
       });
 });", yii\web\View::POS_END);
 ?>
-
-
-<script type="text/javascript">
-
-</script>

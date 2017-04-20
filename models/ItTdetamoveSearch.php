@@ -121,6 +121,7 @@ class ItTdetamoveSearch extends ItTdetamove
             $dataProvider = new SqlDataProvider([
                   //'sql' => 'SELECT * FROM it_tcategory',
                   'sql' => 'SELECT SUM(it_tdetamove.Move_Deta_Q) AS contadito,it_tcategory.Cate_Name, '.
+                  //'it_titem.ITEM_Description, ',
                   'SUM(it_tdetamove.Move_Deta_Tax_Value+it_tdetamove.Move_Deta_Tax2_Value+it_tdetamove.Move_Deta_Tax3_Value) AS grandtotaltax, '.
                   'SUM(it_tdetamove.Move_Deta_Tax_Value) AS totaltax, '.
                   'SUM(it_tdetamove.Move_Deta_Tax2_Value) AS totaltax2, '.
@@ -137,10 +138,11 @@ class ItTdetamoveSearch extends ItTdetamove
                   'GROUP BY it_tcategory.Cate_Name ',
                   
                   
+                  
                   'pagination' => [
                         'pageSize' => 20,
                   ],
-                  'totalCount' => 5,
+                  'totalCount' => 500,
                   'sort' => [
                         'attributes' => [
                               
@@ -165,6 +167,7 @@ class ItTdetamoveSearch extends ItTdetamove
             $dataProvider = new SqlDataProvider([
                   //'sql' => 'SELECT * FROM it_tcategory',
                   'sql' => 'SELECT SUM(it_tdetamove.Move_Deta_Q) AS contadito, it_titemclass.Class_Name , '.
+                  'it_titem.ITEM_Description, '.
                   'SUM(it_tdetamove.Move_Deta_Tax_Value+it_tdetamove.Move_Deta_Tax2_Value+it_tdetamove.Move_Deta_Tax3_Value) AS grandtotaltax, '.
                   'SUM(it_tdetamove.Move_Deta_Tax_Value) AS totaltax, '.
                   'SUM(it_tdetamove.Move_Deta_Tax2_Value) AS totaltax2, '.
@@ -178,7 +181,8 @@ class ItTdetamoveSearch extends ItTdetamove
                   'ON it_titem.ITEM_ID = it_tdetamove.Move_Deta_ITEM_ID) ON it_tmove.Move_ID = it_tdetamove.Move_Deta_Move_ID '.
                   'WHERE it_tmove.Move_Date BETWEEN \''.$startDate.'\' AND \''.$endDate.' \' '.
                   'AND it_tmove.Move_Oper_ID = 2 AND it_titem.ITEM_Inco_Account_ID=1  AND it_tdetamove.Move_Deta_price<>0 '.
-                  'GROUP BY it_titemclass.Class_Name ',
+                  //'GROUP BY it_titemclass.Class_Name ',
+                  'GROUP BY it_titem.ITEM_Description ',
                   
                   
                   'pagination' => [

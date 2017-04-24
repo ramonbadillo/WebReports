@@ -61,3 +61,9 @@ AND it_tdetamove.Move_Deta_price <> 0
 AND it_taccotypegeneral.Gen_account = 2
 AND it_tmove.Move_Date BETWEEN '2016-03-19 00:00:00' AND '2017-03-19 23:59:59'
 ORDER BY it_tcategory.Cate_Name ASC , it_titem.ITEM_ID ASC , it_tdetamove.Move_Deta_Q DESC
+
+
+#query para insertar desde otra base de datos
+INSERT INTO it_titemclass(Class_ID, Class_Name, company_id)
+SELECT Class_ID, Class_Name, '7' AS `company_id`
+FROM morelos7.it_titemclass

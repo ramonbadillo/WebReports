@@ -21,9 +21,40 @@ $this->title = 'Report By Category';
                         <div class="col-sm-2 ">Range Dates:</div>
                         <form action="#" style="border-radius: 0px;" class="form-horizontal group-border-dashed">
                               <div class="form-group ">
-                                    
-                                    <div class="col-md-6">
+                                    <label class="col-md-4 control-label">Range Date:</label>
+                                    <div class="col-md-4">
                                           <input type="text" id="daterange1" name="daterange" value="01/01/2015 1:30 PM - 01/01/2015 2:00 PM" class="form-control datetimerange">
+                                    </div>
+                              </div>
+                              <div class="form-group">
+                                    <label class="col-sm-3 control-label">Select2</label>
+                                    <div class="col-sm-6">
+                                          <select class="select2 select2-hidden-accessible" tabindex="-1" aria-hidden="true">
+                                                
+                                                <optgroup label="Eastern Time Zone">
+                                                      <option value="CT">Connecticut</option>
+                                                      <option value="DE">Delaware</option>
+                                                      <option value="FL">Florida</option>
+                                                      <option value="GA">Georgia</option>
+                                                      <option value="IN">Indiana</option>
+                                                      <option value="ME">Maine</option>
+                                                      <option value="MD">Maryland</option>
+                                                      <option value="MA">Massachusetts</option>
+                                                      <option value="MI">Michigan</option>
+                                                      <option value="NH">New Hampshire</option>
+                                                      <option value="NJ">New Jersey</option>
+                                                      
+                                                </optgroup>
+                                          </select>
+                                          <span class="select2 select2-container select2-container--default select2-container--above" dir="ltr" style="width: 100%;">
+                                                <span class="selection">
+                                                      <span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-hp2z-container">
+                                                            <span class="select2-selection__rendered" id="select2-hp2z-container" title="Delaware">Delaware</span>
+                                                            <span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span>
+                                                      </span>
+                                                </span>
+                                                <span class="dropdown-wrapper" aria-hidden="true"></span>
+                                          </span>
                                     </div>
                               </div>
                         </form>

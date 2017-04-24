@@ -129,4 +129,31 @@ return array (
       '@yii/faker' => $vendorDir . '/yiisoft/yii2-faker',
     ),
   ),
+  'kartik-v/yii2-dropdown-x' => 
+  array (
+    'name' => 'kartik-v/yii2-dropdown-x',
+    'version' => '1.2.0.0',
+    'alias' => 
+    array (
+      '@kartik/dropdown' => $vendorDir . '/kartik-v/yii2-dropdown-x',
+    ),
+  ),
+  'kartik-v/yii2-nav-x' => 
+  array (
+    'name' => 'kartik-v/yii2-nav-x',
+    'version' => '1.2.0.0',
+    'alias' => 
+    array (
+      '@kartik/nav' => $vendorDir . '/kartik-v/yii2-nav-x',
+    ),
+  ),
+  'kartik-v/yii2-widget-sidenav' => 
+  array (
+    'name' => 'kartik-v/yii2-widget-sidenav',
+    'version' => '1.0.0.0',
+    'alias' => 
+    array (
+      '@kartik/sidenav' => $vendorDir . '/kartik-v/yii2-widget-sidenav',
+    ),
+  ),
 );

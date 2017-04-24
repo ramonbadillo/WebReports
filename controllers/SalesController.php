@@ -162,13 +162,7 @@ class SalesController extends Controller
             $month_ini = new \DateTime("first day of this month");
             $month_end = new \DateTime("last day of this month");
             
-            //echo $month_ini->format('Y-m-d H:i:s'); // 2012-02-01
-            //echo $month_end->format('Y-m-d H:i:s'); // 2012-02-29
             
-            
-            
-            
-            //die();
             $startDate = $request->get('start',"2016-01-01 00:00:00");
             $endDate = $request->get('end',"2016-05-31 00:00:00");
             
@@ -179,5 +173,7 @@ class SalesController extends Controller
             
             
       }
+      
+      
       
 }

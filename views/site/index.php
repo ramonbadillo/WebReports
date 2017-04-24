@@ -1,251 +1,172 @@
-
 <?php
 use miloschuman\highcharts\Highcharts;
 use miloschuman\highcharts\HighchartsAsset;
-use yii\grid\GridView;
-use yii\data\ActiveDataProvider;
-use yii\helpers\Html;
-use yii\db\Query;
-/* @var $this yii\web\View */
-
-$this->title = 'Taqueria Guadalajara Victoria';
-$request = Yii::$app->request;
-$date1 = $request->get('start',"2016-05-01 00:00:00");
-$date2 =  $request->get('end',"2016-06-01 00:00:00");
-echo $date1;
-
-//$date1 = "2016-05-01 00:00:00";
-//$date2 = "2016-06-01 00:00:00";
-//var_dump($categoryNames) ;
-
-//$comparation = "it_tdetamove.Move_Deta_price*it_tdetamove.Move_Deta_Q/it_tdetamove.Move_Deta_Q";
-$comparation = "it_tdetamove.Move_Deta_Q";
-
-$sqlFOOD = "select ITEM_Description, it_tcategory.Cate_Name , sum(".$comparation .") AS quantity  from it_tdetamove inner join it_tmove on (it_tdetamove.Move_Deta_Move_ID = it_tmove.Move_ID)
-inner join it_titem on (it_tdetamove.Move_Deta_ITEM_ID = it_titem.ITEM_ID) inner join it_tcategory on (it_titem.ITEM_Cate_ID = it_tcategory.Cate_ID) where it_tmove.Move_Date
-between '".$date1."' AND '".$date2."' and  it_tcategory.Cate_Name = 'FOOD' group by ITEM_Description order by quantity desc limit 20";
-
-$rawDataFOOD = Yii::$app->db->createCommand($sqlFOOD)->queryAll();
-
-$sqlBEER = "select ITEM_Description, it_tcategory.Cate_Name , sum(".$comparation .") AS quantity  from it_tdetamove inner join it_tmove on (it_tdetamove.Move_Deta_Move_ID = it_tmove.Move_ID)
-inner join it_titem on (it_tdetamove.Move_Deta_ITEM_ID = it_titem.ITEM_ID) inner join it_tcategory on (it_titem.ITEM_Cate_ID = it_tcategory.Cate_ID) where it_tmove.Move_Date
-between '".$date1."' AND '".$date2."' and  it_tcategory.Cate_Name = 'BEER' group by ITEM_Description order by quantity desc limit 20";
-
-$rawDataBEER = Yii::$app->db->createCommand($sqlBEER)->queryAll();
-
-$sqlLIQUOR = "select ITEM_Description, it_tcategory.Cate_Name , sum(".$comparation .") AS quantity  from it_tdetamove inner join it_tmove on (it_tdetamove.Move_Deta_Move_ID = it_tmove.Move_ID)
-inner join it_titem on (it_tdetamove.Move_Deta_ITEM_ID = it_titem.ITEM_ID) inner join it_tcategory on (it_titem.ITEM_Cate_ID = it_tcategory.Cate_ID) where it_tmove.Move_Date
-between '".$date1."' AND '".$date2."' and  it_tcategory.Cate_Name = 'LIQUOR' group by ITEM_Description order by quantity desc limit 20";
-
-$rawDataLIQUOR = Yii::$app->db->createCommand($sqlLIQUOR)->queryAll();
-
-$sqlVD = "select ITEM_Description, it_tcategory.Cate_Name , sum(".$comparation .") AS quantity  from it_tdetamove inner join it_tmove on (it_tdetamove.Move_Deta_Move_ID = it_tmove.Move_ID)
-inner join it_titem on (it_tdetamove.Move_Deta_ITEM_ID = it_titem.ITEM_ID) inner join it_tcategory on (it_titem.ITEM_Cate_ID = it_tcategory.Cate_ID) where it_tmove.Move_Date
-between '".$date1."' AND '".$date2."' and  it_tcategory.Cate_Name = 'Virgen Drinks' group by ITEM_Description order by quantity desc limit 20";
-
-$rawDataVD = Yii::$app->db->createCommand($sqlVD)->queryAll();
-
-$sqlSD = "select ITEM_Description, it_tcategory.Cate_Name , sum(".$comparation .") AS quantity  from it_tdetamove inner join it_tmove on (it_tdetamove.Move_Deta_Move_ID = it_tmove.Move_ID)
-inner join it_titem on (it_tdetamove.Move_Deta_ITEM_ID = it_titem.ITEM_ID) inner join it_tcategory on (it_titem.ITEM_Cate_ID = it_tcategory.Cate_ID) where it_tmove.Move_Date
-between '".$date1."' AND '".$date2."' and  it_tcategory.Cate_Name = 'SOFT DRINK' group by ITEM_Description order by quantity desc limit 20";
-
-$rawDataSD = Yii::$app->db->createCommand($sqlSD)->queryAll();
-
-$sql = "select it_tcategory.Cate_Name, SUM(".$comparation .") AS quantity FROM it_tdetamove INNER JOIN it_tmove ON (it_tdetamove.Move_Deta_Move_ID = it_tmove.Move_ID)
-INNER JOIN it_titem ON (it_tdetamove.Move_Deta_ITEM_ID = it_titem.ITEM_ID) INNER JOIN it_tcategory ON (it_titem.ITEM_Cate_ID = it_tcategory.Cate_ID) WHERE it_tmove.Move_Date
-BETWEEN '".$date1."' AND '".$date2."' GROUP BY Cate_Name ORDER BY quantity DESC";
-//
-
-$rawData = Yii::$app->db->createCommand($sql)->queryAll();
-//var_dump(Yii::$app->db->createCommand($sql)->queryAll());
-//die();
-
-foreach ($rawDataFOOD as $data) {
-      $dataFOOD[] = [
-            'name' => $data['ITEM_Description'],
-            'y' => (int)$data['quantity']*1
-      ];
-}
-foreach ($rawDataBEER as $data) {
-      $dataBEER[] = [
-            'name' => $data['ITEM_Description'],
-            'y' => (int)$data['quantity']*1
-      ];
-}
-foreach ($rawDataLIQUOR as $data) {
-      $dataSOFT[] = [
-            'name' => $data['ITEM_Description'],
-            'y' => (int)$data['quantity']*1
-      ];
-}
-foreach ($rawDataVD as $data) {
-      $dataVD[] = [
-            'name' => $data['ITEM_Description'],
-            'y' => (int)$data['quantity']*1
-      ];
-}
-foreach ($rawDataSD as $data) {
-      $dataSD[] = [
-            'name' => $data['ITEM_Description'],
-            'y' => (int)$data['quantity']*1
-      ];
-}
-
-$sub_data = [];
-
-$sub_data[] = [
-      'id' => 'LIQUOR',
-      'name' => 'LIQUOR',
-      'data' =>$dataSOFT
-];
-$sub_data[] = [
-      'id' => 'FOOD',
-      'name' => 'FOOD',
-      'data' =>$dataFOOD
-];
-$sub_data[] = [
-      'id' => 'BEER',
-      'name' => 'BEER',
-      'data' =>$dataBEER
-];
-$sub_data[] = [
-      'id' => 'Virgen Drinks',
-      'name' => 'Virgen Drinks',
-      'data' =>$dataVD
-];
-$sub_data[] = [
-      'id' => 'SOFT DRINK',
-      'name' => 'SOFT DRINK',
-      'data' =>$dataBEER
-];
-$sub = json_encode($sub_data);
-foreach ($rawData as $data) {
-      $main_data[] = [
-            'name' => $data['Cate_Name'],
-            'y' => (int)$data['quantity']*1,
-            'drilldown' => $data['Cate_Name']
-      ];
-}
-$main = json_encode($main_data);
-setlocale(LC_MONETARY, 'en_US');
+use yii\web\JsExpression;
 ?>
-
-<!--Date Range picker-->
 <div class="row">
-      
       <div class="col-md-12">
-            
-            <div class="panel panel-default panel-border-color panel-border-color-primary">
-                  <div class="panel-heading panel-heading-divider">Reportes por Categorias
-                        <span class="panel-subtitle">
-                              <form action="#" style="border-radius: 0px;" class="form-horizontal group-border-dashed">
-                                    <div class="form-group ">
-                                          <label class="col-sm-3 control-label">Range Dates</label>
-                                          <div class="col-md-4">
-                                                <input type="text" id="daterange1" name="daterange" value="01/01/2015 1:30 PM - 01/01/2015 2:00 PM" class="form-control datetimerange">
-                                          </div>
-                                    </div>
-                              </form>
-                        </span>
+            <div class="widget widget-fullwidth be-loading">
+                  
+                  <div class="widget-chart-container">
+                        <?php
+                        
+                        
+                        // echo '===';
+                        // var_dump(gmdate('Y-m-d H:i:s',strtotime('2015-06-03 06:16:28')));
+                        // var_dump(strtotime('2015-06-10 06:16:28'));
+                        // var_dump( strtotime('2015-06-02 06:16:28'." UTC"));
+                        //die();
+                        
+                        
+                        echo Highcharts::widget([
+                              'options' => [
+                                    'title' => ['text' => 'Sales this month'],
+                                    'xAxis' => [
+                                          'type' => 'datetime',
+                                          'dateTimeLabelFormats' => [
+                                                'month' => '%e. %b',
+                                                'year' => '%b'
+                                          ],
+                                          'title' => [
+                                                'text' => 'Date',
+                                          ],
+                                    ],
+                                    'yAxis' => [
+                                          ['title' => 'Sells'],
+                                          'min' => 0,
+                                    ],
+                                    
+                                    'series' => [
+                                          [
+                                                'name' => 'Sells',
+                                                'pointStart'=> strtotime('2015-06-02 06:16:28'." UTC"),
+                                                'pointInterval'=> 24 * 3600 * 1000, // one day
+                                                'data' => [
+                                                      29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4
+                                                ],
+                                          ],
+                                    ],
+                              ],
+                              
+                        ]);
+                        ?>
                   </div>
                   
-                  <div class="panel-body">
-                        <div id="chart1"></div>
-                        
-                        <table id="table1" class="table table-striped table-hover table-fw-widget dataTable no-footer" role="grid" aria-describedby="table1_info">
-                              <thead>
-                                    <tr role="row">
-                                          
-                                          <th class="sorting" tabindex="0" aria-controls="table1" rowspan="1" colspan="1" >Category Name</th>
-                                          <th class="sorting" tabindex="0" aria-controls="table1" rowspan="1" colspan="1" >Quantity</th>
-                                    </tr>
-                              </thead>
-                              <tbody>
-                                    
-                                    
-                                    
-                                    <?php
-                                    foreach ($rawData as $category):?>
-                                    <tr class="gradeA odd" role="row">
-                                          <td class="sorting_1">
-                                                <?= Html::encode("{$category['Cate_Name']}") ?>
-                                          </td>
-                                          <td>
-                                                <?=
-                                                $moneyString = '$' . number_format($category['quantity'],2);
-                                                Html::encode("{$moneyString}");
-                                                ?>
-                                          </td>
-                                          
-                                    </tr>
-                              <?php endforeach; ?>
-                              
-                        </tbody>
-                  </table>
             </div>
       </div>
 </div>
-</div>
 
-
-<div style="display: none">
-      <?php
-      echo Highcharts::widget([
-            'scripts' => [
-                  'highcharts-more', // enables supplementary chart types (gauge, arearange, columnrange, etc.)
-                  //'modules/exporting', // adds Exporting button/menu to chart
-                  //'themes/grid',       // applies global 'grid' theme to all charts
-                  //'highcharts-3d',
-                  'modules/drilldown'
-            ]
-      ]);
-      ?>
-</div>
-
-
-
-
-<?php
-$this->registerJs("$(function () {
-      $('#chart1').highcharts({
-            chart: {
-                  type: 'column'
-            },
-            title: {
-                  text: ''
-            },
-            xAxis: {
-                  type: 'category'
-            },
-            yAxis: {
-                  title: {
-                        text: '<b>Money</b>'
-                  },
-            },
-            legend: {
-                  enabled: false
-            },
-            plotOptions: {
-                  series: {
-                        borderWidth: 0,
-                        dataLabels: {
-                              enabled: true
-                        }
-                  }
-            },
-            series: [
-                  {
-                        name: 'categorys',
-                        colorByPoint: true,
-                        data:$main
-                        
-                  }
-            ],
-            drilldown: {
-                  series:$sub
+<div class="row">
+      <div class="col-xs-12 col-md-4">
+            <div class="widget be-loading">
                   
-            }
-            
-      });
-});", yii\web\View::POS_END);
-?>
+                  <?php
+                  echo Highcharts::widget([
+                        'scripts' => [
+                              'modules/exporting',
+                              'themes/grid-light',
+                        ],
+                        'options' => [
+                              'title' => ['text' => 'Categorys'],
+                              'chart' => ['type' => 'column'],
+                              'series' => [
+                                    
+                                    'name' => 'Total consumption',
+                                    'colorByPoint' => true,
+                                    'data' => [
+                                          ['name' => 'Jane','y' => 13],
+                                          ['name' => 'John','y' => 23],
+                                          ['name' => 'Joe', 'y' => 19 ],
+                                    ],
+                                    'center' => [100, 80],
+                                    'size' => 100,
+                                    'showInLegend' => false,
+                                    'dataLabels' => [
+                                          'enabled' => false,
+                                    ],
+                              ],
+                        ],
+                        
+                  ]);
+                  ?>
+                  
+            </div>
+      </div>
+      <div class="col-xs-12 col-md-4">
+            <div class="panel panel-default panel-table">
+                  <div class="panel-heading">
+                        <div class="tools"><span class="icon mdi mdi-download"></span><span class="icon mdi mdi-more-vert"></span></div>
+                        <div class="title">Movements</div>
+                  </div>
+                  <div class="panel-body table-responsive">
+                        <table class="table table-striped table-borderless">
+                              <thead>
+                                    <tr>
+                                          <th style="width:40%;">Product</th>
+                                          <th class="number"style="width:20%;">Price</th>
+                                    </tr>
+                              </thead>
+                              <tbody class="no-border-x">
+                                    <tr>
+                                          <td>Cash</td>
+                                          <td class="number">$1412139</td>
+                                    </tr>
+                                    <tr>
+                                          <td>Credit Cards</td>
+                                          <td class="number">$535</td>
+                                    </tr>
+                                    <tr>
+                                          <td>Checks</td>
+                                          <td class="number">$583</td>
+                                    </tr>
+                                    <tr>
+                                          <td>Gift Cards</td>
+                                          <td class="number">$350</td>
+                                    </tr>
+                                    <tr>
+                                          <td>Other</td>
+                                          <td class="number">$495</td>
+                                    </tr>
+                              </tbody>
+                        </table>
+                  </div>
+            </div>
+      </div>
+      
+      <div class="col-xs-12 col-md-4">
+            <div class="panel panel-default panel-table">
+                  <div class="panel-heading">
+                        <div class="tools"><span class="icon mdi mdi-download"></span><span class="icon mdi mdi-more-vert"></span></div>
+                        <div class="title">Locations</div>
+                  </div>
+                  <div class="panel-body table-responsive">
+                        <table class="table table-striped table-hover">
+                              <thead>
+                                    <tr>
+                                          <th>Name</th>
+                                    </tr>
+                              </thead>
+                              <tbody>
+                                    <tr>
+                                          
+                                          <td class="user-avatar"> <i class="mdi mdi-balance"></i> Location 1</td>
+                                          
+                                    </tr>
+                                    <tr>
+                                          <td class="user-avatar"> <i class="mdi mdi-balance"></i> Location 2</td>
+                                          
+                                    </tr>
+                                    <tr>
+                                          <td class="user-avatar"> <i class="mdi mdi-balance"></i> Location 3</td>
+                                          
+                                    </tr>
+                                    <tr>
+                                          <td class="user-avatar"> <i class="mdi mdi-balance"></i> Location 4</td>
+                                          
+                                    </tr>
+                              </tbody>
+                        </table>
+                  </div>
+            </div>
+      </div>
+</div>
